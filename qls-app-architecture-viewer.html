@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QLS Lighting Australia — Painel Geral de Arquitetura &amp; Roadmaps</title>
+    
+    <!-- Google Fonts: Urbanist (QLS Official Primary Typeface) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           QLS OFFICIAL DESIGN SYSTEM TOKENS & CRAFT FOUNDATION
+           ========================================================================== */
+        :root {
+            /* Neutrals */
+            --black: #0a0a0a;
+            --ink: #141311;
+            --dark: #1a1814;
+            --dark-elevated: #23201b;
+            --grey: #6f6a64;
+            --mute: #9a9590;
+            --line: #3a3632;
+            --line-light: #524d47;
+            --light: #e4e0da;
+            --off: #f0eeea;
+            --white: #f8f6f2;
+            
+            /* QLS Signature Gold Spectrum */
+            --gold: #c9a84c;
+            --gold-d: #a8843a;
+            --gold-l: #e8b86a;
+            --gold-muted: rgba(201, 168, 76, 0.12);
+            --gold-glow: rgba(201, 168, 76, 0.24);
+            
+            /* Status / Semantic Tokens */
+            --status-validated: #c9a84c;
+            --status-validated-bg: rgba(201, 168, 76, 0.12);
+            --info: #3b82f6;
+            
+            /* Surface & Contrast Tokens */
+            --bg: #0a0a0a;
+            --card: #141311;
+            --card-subtle: #1a1814;
+            --card-hover: #211e19;
+            --bd: #2e2b26;
+            --bd-focus: #c9a84c;
+            --fg: #e4e0da;
+            --fg-muted: #9a9590;
+            --hd: #f8f6f2;
+            
+            /* Radii */
+            --r-xs: 6px;
+            --r-s: 8px;
+            --r-m: 14px;
+            --r-l: 20px;
+            --r-p: 999px;
+            
+            /* Elevation */
+            --sh1: 0 2px 8px rgba(0, 0, 0, 0.35);
+            --sh2: 0 8px 24px rgba(0, 0, 0, 0.45);
+            --sh3: 0 16px 48px rgba(0, 0, 0, 0.65);
+            --ease: cubic-bezier(.22, .61, .36, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font: 400 16px/1.65 'Urbanist', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--fg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
+                linear-gradient(180deg, #0a0a0a 0%, #100f0d 100%);
+            background-attachment: fixed;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { color: inherit; text-decoration: none; }
+        h1, h2, h3, h4 { color: var(--hd); letter-spacing: -0.025em; line-height: 1.2; font-weight: 700; }
+
+        /* Modern Vector Outline Icon */
+        .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            vertical-align: middle;
+        }
+        .icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        /* QLS Gold Gradient Top Accent */
+        .qls-gradient-bar {
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-l), var(--gold-d), var(--gold));
+            background-size: 300% 100%;
+            animation: qlsMoveGradient 6s ease infinite;
+            position: sticky;
+            top: 0;
+            z-index: 101;
+        }
+
+        @keyframes qlsMoveGradient {
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Header Navigation */
+        header {
+            background: rgba(10, 10, 10, 0.90);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--bd);
+            padding: 14px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 3px;
+            z-index: 100;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .brand-cluster {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .qls-logo-img {
+            height: 30px;
+            width: auto;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+        }
+
+        .brand-meta h1 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.01em;
+        }
+
+        .brand-meta p {
+            font-size: 12px;
+            color: var(--gold-l);
+            font-weight: 500;
+            margin-top: 1px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: var(--card);
+            padding: 4px;
+            border-radius: var(--r-p);
+            border: 1px solid var(--bd);
+            gap: 4px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--fg-muted);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 18px;
+            border-radius: var(--r-p);
+            cursor: pointer;
+            transition: all 0.2s var(--ease);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+        }
+
+        .tab-btn:hover {
+            color: var(--white);
+        }
+
+        .tab-btn.active {
+            background: var(--dark-elevated);
+            color: var(--white);
+            box-shadow: var(--sh1);
+        }
+
+        .tab-btn.active.tab-feedback {
+            background: var(--gold-muted);
+            color: var(--gold-l);
+            border: 1px solid rgba(201, 168, 76, 0.4);
+        }
+
+        .nav-actions-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-action-gold {
+            background: var(--gold);
+            color: var(--black);
+            border: 1px solid var(--gold);
+            padding: 8px 18px;
+            border-radius: var(--r-p);
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 16px var(--gold-glow);
+            transition: all 0.2s;
+        }
+
+        .btn-action-gold:hover {
+            background: var(--gold-l);
+            transform: translateY(-1px);
+        }
+
+        .btn-download-token {
+            background: rgba(201, 168, 76, 0.08);
+            border: 1px solid var(--gold-d);
+            color: var(--gold-l);
+            padding: 7px 14px;
+            border-radius: var(--r-p);
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-download-token:hover {
+            background: var(--gold);
+            color: var(--black);
+            box-shadow: 0 0 14px var(--gold-glow);
+        }
+
+        /* Content Area */
+        main {
+            flex: 1;
+            padding: 28px 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .view-panel {
+            display: none;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .view-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Real-Time Status Notification Alert */
+        .live-sync-alert {
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.12) 0%, rgba(20, 19, 17, 0.8) 100%);
+            border: 1.5px solid var(--gold-d);
+            border-radius: var(--r-m);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            box-shadow: var(--sh1);
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .live-pulse-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .live-dot-gold {
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--gold);
+            animation: pulseGold 2s infinite;
+        }
+
+        @keyframes pulseGold {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            50% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
+        }
+
+        /* Executive Pillars Grid */
+        .executive-pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .pillar-card {
+            background: var(--card);
+            border: 1px solid var(--bd);
+            border-radius: var(--r-m);
+            padding: 22px;
+            box-shadow: var(--sh1);
+            position: relative;
+        }
+
+        .pillar-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .pillar-header h3 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gold-l);
+            font-weight: 700;
+        }
+
+        .pillar-card p {
+            font-size: 13px;
+            color: var(--fg);
+            line-height: 1.55;
+        }
+
+        .pillar-card ul {
+            list-style: none;
+            font-size: 13px;
+            color: var(--fg);
+        }
+
+        .pillar-card ul li {
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Feedback Grid */
+        .feedback-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 22px;
+        }
+
+        .validation-card {
+            background: var(--card);
+            border: 1px solid var(--bd);
+            border-radius: var(--r-l);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: var(--sh1);
+        }
+
+        .validation-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--bd);
+            padding-bottom: 14px;
+        }
+
+        .validation-card-header h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-badge-gold {
+            background: var(--gold-muted);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            color: var(--gold-l);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: var(--r-p);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .feedback-items-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .feedback-entry {
+            background: var(--card-subtle);
+            border: 1px solid var(--bd);
+            border-radius: var(--r-s);
+            padding: 12px 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 13px;
+        }
+
+        .feedback-entry.is-custom {
+            border-left: 3px solid var(--gold);
+            background: linear-gradient(90deg, rgba(201, 168, 76, 0.08) 0%, var(--card-subtle) 100%);
+        }
+
+        .feedback-entry-status {
+            color: var(--gold);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .feedback-entry-text strong {
+            color: var(--white);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .feedback-entry-text span {
+            color: var(--fg-muted);
+            font-size: 12px;
+        }
+
+        .client-note-display {
+            background: rgba(201, 168, 76, 0.05);
+            border: 1px dashed rgba(201, 168, 76, 0.3);
+            border-radius: var(--r-s);
+            padding: 12px 14px;
+            font-size: 13px;
+            color: var(--gold-l);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        /* SVG Board Embed Container */
+        .board-canvas-shell {
+            background: var(--card);
+            border: 1px solid var(--bd);
+            border-radius: var(--r-l);
+            overflow: hidden;
+            box-shadow: var(--sh3);
+        }
+
+        .board-canvas-toolbar {
+            background: var(--card-subtle);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--bd);
+        }
+
+        .board-canvas-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .board-viewport {
+            width: 100%;
+            height: 780px;
+            overflow: auto;
+            display: flex;
+            justify-content: center;
+            background: var(--bg);
+            padding: 24px;
+        }
+
+        .board-viewport svg {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--r-m);
+            box-shadow: var(--sh3);
+        }
+
+        @media (max-width: 900px) {
+            header { padding: 12px 18px; }
+            main { padding: 18px; }
+            .executive-pillars-grid { grid-template-columns: 1fr; }
+            .feedback-cards-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Signature Animated Gold Accent Line -->
+    <div class="qls-gradient-bar"></div>
+
+    <header>
+        <div class="brand-cluster">
+            <img src="assets/brand/QLS-Logo-Horizontal-White.png" alt="QLS Lighting Australia" class="qls-logo-img">
+            <div class="brand-meta">
+                <h1>Painel Geral de Arquitetura &amp; Roadmaps</h1>
+                <p>Hub Central Integrado • Validação &amp; Design Boards</p>
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active tab-feedback" onclick="switchTab('feedback')">
+                <span class="icon" style="width:15px; height:15px;"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+                <span>Respostas do Cliente (<span id="tabCounter">0</span>)</span>
+            </button>
+            <button class="tab-btn tab-figjam" onclick="switchTab('figjam')">
+                <span class="icon" style="width:15px; height:15px;"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span>
+                <span>FigJam Canvas</span>
+            </button>
+            <button class="tab-btn tab-miro" onclick="switchTab('miro')">
+                <span class="icon" style="width:15px; height:15px;"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/></svg></span>
+                <span>Miro Board</span>
+            </button>
+            <button class="tab-btn tab-excalidraw" onclick="switchTab('excalidraw')">
+                <span class="icon" style="width:15px; height:15px;"><svg viewBox="0 0 24 24"><path d="m18 2 4 4-12 12H6v-4L18 2z"/><path d="M14 6l4 4"/></svg></span>
+                <span>Excalidraw</span>
+            </button>
+        </nav>
+
+        <div class="nav-actions-group">
+            <a href="roadmap-interativo-cliente.html" class="btn-action-gold">
+                <span class="icon" style="width:15px; height:15px;"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+                <span>Abrir Formulário do Cliente</span>
+            </a>
+            <a href="qls-app-architecture.excalidraw" download class="btn-download-token">
+                <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></span>
+                <span>.excalidraw</span>
+            </a>
+            <a href="qls-app-architecture-figjam.svg" download class="btn-download-token">
+                <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></span>
+                <span>FigJam SVG</span>
+            </a>
+            <a href="qls-app-architecture-miro.svg" download class="btn-download-token">
+                <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></span>
+                <span>Miro SVG</span>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Real-Time Sync Status Notification -->
+        <div class="live-sync-alert" id="liveSyncBanner">
+            <div class="live-pulse-wrapper">
+                <div class="live-dot-gold"></div>
+                <div>
+                    <strong style="color: var(--gold-l); font-size: 14px;">Sincronização em Tempo Real:</strong>
+                    <span id="clientSummaryText" style="color: var(--white); font-size: 13px; margin-left: 6px;">
+                        Carregando validações do cliente...
+                    </span>
+                </div>
+            </div>
+            <a href="roadmap-interativo-cliente.html" class="btn-download-token" style="background: var(--gold); color: #000; font-weight: 700;">
+                <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+                <span>Editar no Formulário</span>
+            </a>
+        </div>
+
+        <!-- Executive Pillars Summary -->
+        <div class="executive-pillars-grid">
+            <div class="pillar-card">
+                <div class="pillar-header">
+                    <span class="icon" style="width:16px; height:16px; color: var(--gold);"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+                    <h3>Proposta de Valor QLS</h3>
+                </div>
+                <p>Consultor Luminotécnico inteligente com IA baseado na norma <strong>AS/NZS 1680</strong> e Catálogo Digital B2B com geração de PDF e cotações RFQ imediatas.</p>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-header">
+                    <span class="icon" style="width:16px; height:16px; color: var(--gold);"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" x2="9" y1="9" y2="15"/><line x1="9" x2="15" y1="9" y2="15"/></svg></span>
+                    <h3>Dores Eliminadas</h3>
+                </div>
+                <ul>
+                    <li><span class="icon" style="width:13px; height:13px; color: var(--gold-d);"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></span> Cálculos manuais lentos de lux</li>
+                    <li><span class="icon" style="width:13px; height:13px; color: var(--gold-d);"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></span> Erros de especificação técnica</li>
+                    <li><span class="icon" style="width:13px; height:13px; color: var(--gold-d);"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></span> Demora para emitir cotações B2B</li>
+                </ul>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-header">
+                    <span class="icon" style="width:16px; height:16px; color: var(--gold);"><svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+                    <h3>Recursos-Chave</h3>
+                </div>
+                <ul>
+                    <li><span class="icon" style="width:13px; height:13px; color: var(--gold);"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Motor IA AS/NZS 1680</li>
+                    <li><span class="icon" style="width:13px; height:13px; color: var(--gold);"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Recomendação Tripla Glow</li>
+                    <li><span class="icon" style="width:13px; height:13px; color: var(--gold);"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Memorial Descritivo em PDF</li>
+                    <li><span class="icon" style="width:13px; height:13px; color: var(--gold);"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Pipeline Direto de RFQs</li>
+                </ul>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-header">
+                    <span class="icon" style="width:16px; height:16px; color: var(--gold);"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg></span>
+                    <h3>Cronograma Geral</h3>
+                </div>
+                <ul>
+                    <li><span class="icon" style="width:13px; height:13px; color: var(--gold);"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Sprint 1: Fundação &amp; Tokens</li>
+                    <li><span class="icon" style="width:13px; height:13px; color: var(--gold);"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Sprint 2/3: Motor &amp; Telas</li>
+                    <li><span class="icon" style="width:13px; height:13px; color: var(--gold);"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Sprint 4/5: Supabase &amp; QA</li>
+                    <li><span class="icon" style="width:13px; height:13px; color: var(--gold);"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Sprint 6: Publicação nas Lojas</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 0. CLIENT FEEDBACK & VALIDATION TAB (DYNAMIC PORTAL) -->
+        <div id="panel-feedback" class="view-panel active">
+            <div class="feedback-cards-grid">
+                <!-- 1. Problemas -->
+                <div class="validation-card">
+                    <div class="validation-card-header">
+                        <h3>
+                            <span class="icon" style="width:18px; height:18px; color: var(--gold);"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+                            <span>1. Problemas que o App Resolve</span>
+                        </h3>
+                        <span class="status-badge-gold" id="badge-prob">0 itens</span>
+                    </div>
+                    <div class="feedback-items-stack" id="feedback-prob-list"></div>
+                    <div class="client-note-display" id="feedback-prob-note">
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                        <span>Nenhuma anotação adicional informada.</span>
+                    </div>
+                </div>
+
+                <!-- 2. Público-Alvo -->
+                <div class="validation-card">
+                    <div class="validation-card-header">
+                        <h3>
+                            <span class="icon" style="width:18px; height:18px; color: var(--gold);"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>
+                            <span>2. Perfis de Usuário (Público)</span>
+                        </h3>
+                        <span class="status-badge-gold" id="badge-personas">0 itens</span>
+                    </div>
+                    <div class="feedback-items-stack" id="feedback-personas-list"></div>
+                    <div class="client-note-display" id="feedback-personas-note">
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                        <span>Nenhuma anotação adicional informada.</span>
+                    </div>
+                </div>
+
+                <!-- 3. Funcionalidades -->
+                <div class="validation-card">
+                    <div class="validation-card-header">
+                        <h3>
+                            <span class="icon" style="width:18px; height:18px; color: var(--gold);"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+                            <span>3. Funcionalidades do MVP</span>
+                        </h3>
+                        <span class="status-badge-gold" id="badge-feat">0 itens</span>
+                    </div>
+                    <div class="feedback-items-stack" id="feedback-feat-list"></div>
+                    <div class="client-note-display" id="feedback-feat-note">
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                        <span>Nenhuma anotação adicional informada.</span>
+                    </div>
+                </div>
+
+                <!-- 4. Telas & Navegação -->
+                <div class="validation-card">
+                    <div class="validation-card-header">
+                        <h3>
+                            <span class="icon" style="width:18px; height:18px; color: var(--gold);"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/></svg></span>
+                            <span>4. Telas &amp; Navegação (Abas)</span>
+                        </h3>
+                        <span class="status-badge-gold" id="badge-screens">0 itens</span>
+                    </div>
+                    <div class="feedback-items-stack" id="feedback-screens-list"></div>
+                    <div class="client-note-display" id="feedback-screens-note">
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                        <span>Nenhuma anotação adicional informada.</span>
+                    </div>
+                </div>
+
+                <!-- 5. Cronograma & Sprints -->
+                <div class="validation-card">
+                    <div class="validation-card-header">
+                        <h3>
+                            <span class="icon" style="width:18px; height:18px; color: var(--gold);"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/></svg></span>
+                            <span>5. Cronograma &amp; Sprints</span>
+                        </h3>
+                        <span class="status-badge-gold" id="badge-sprints">0 itens</span>
+                    </div>
+                    <div class="feedback-items-stack" id="feedback-sprints-list"></div>
+                    <div class="client-note-display" id="feedback-sprints-note">
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                        <span>Nenhuma anotação adicional informada.</span>
+                    </div>
+                </div>
+
+                <!-- 6. Motor Luminotécnico & Feedback Geral -->
+                <div class="validation-card">
+                    <div class="validation-card-header">
+                        <h3>
+                            <span class="icon" style="width:18px; height:18px; color: var(--gold);"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+                            <span>6. Motor IA (AS/NZS 1680)</span>
+                        </h3>
+                        <span class="status-badge-gold">Calibrado</span>
+                    </div>
+                    <div style="font-size: 13px; color: var(--fg); line-height: 1.65;">
+                        <p>• <strong>Norma Aplicada:</strong> AS/NZS 1680 (Padrão Australiano)</p>
+                        <p>• <strong>Tripla Recomendação:</strong> Best Match + Premium + Custo-Benefício</p>
+                        <p>• <strong>Fator de Manutenção:</strong> 0.80 | <strong>Utilização:</strong> 0.65</p>
+                    </div>
+                    <div class="client-note-display" id="feedback-calc-note">
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                        <span>Nenhuma anotação sobre o cálculo.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1. FIGJAM TAB -->
+        <div id="panel-figjam" class="view-panel">
+            <div class="board-canvas-shell">
+                <div class="board-canvas-toolbar">
+                    <div class="board-canvas-title">
+                        <span class="icon" style="width:16px; height:16px; color: var(--gold);"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span>
+                        <span>FigJam Canvas • Arquitetura de Produto &amp; Wireframe Mobile</span>
+                    </div>
+                    <a href="qls-app-architecture-figjam.svg" target="_blank" class="btn-download-token">
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg></span>
+                        <span>Abrir em Nova Aba</span>
+                    </a>
+                </div>
+                <div class="board-viewport">
+                    <object data="qls-app-architecture-figjam.svg" type="image/svg+xml" style="width: 100%; height: 100%; min-height: 720px;"></object>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. MIRO TAB -->
+        <div id="panel-miro" class="view-panel">
+            <div class="board-canvas-shell">
+                <div class="board-canvas-toolbar">
+                    <div class="board-canvas-title">
+                        <span class="icon" style="width:16px; height:16px; color: var(--gold);"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/></svg></span>
+                        <span>Miro Agile Board • Sprints Kanban &amp; Cards de Ideação</span>
+                    </div>
+                    <a href="qls-app-architecture-miro.svg" target="_blank" class="btn-download-token">
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg></span>
+                        <span>Abrir em Nova Aba</span>
+                    </a>
+                </div>
+                <div class="board-viewport">
+                    <object data="qls-app-architecture-miro.svg" type="image/svg+xml" style="width: 100%; height: 100%; min-height: 720px;"></object>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. EXCALIDRAW TAB -->
+        <div id="panel-excalidraw" class="view-panel">
+            <div class="board-canvas-shell">
+                <div class="board-canvas-toolbar">
+                    <div class="board-canvas-title">
+                        <span class="icon" style="width:16px; height:16px; color: var(--gold);"><svg viewBox="0 0 24 24"><path d="m18 2 4 4-12 12H6v-4L18 2z"/><path d="M14 6l4 4"/></svg></span>
+                        <span>Excalidraw Board • Ideação e Wireframe Hand-Drawn</span>
+                    </div>
+                    <a href="qls-app-architecture.excalidraw" download class="btn-download-token">
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></span>
+                        <span>Baixar .excalidraw</span>
+                    </a>
+                </div>
+                <div class="board-viewport">
+                    <object data="qls-app-architecture-figjam.svg" type="image/svg+xml" style="width: 100%; height: 100%; min-height: 720px;"></object>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.view-panel').forEach(panel => panel.classList.remove('active'));
+
+            if (tab === 'feedback') {
+                document.querySelector('.tab-feedback').classList.add('active');
+                document.getElementById('panel-feedback').classList.add('active');
+            } else if (tab === 'figjam') {
+                document.querySelector('.tab-figjam').classList.add('active');
+                document.getElementById('panel-figjam').classList.add('active');
+            } else if (tab === 'miro') {
+                document.querySelector('.tab-miro').classList.add('active');
+                document.getElementById('panel-miro').classList.add('active');
+            } else if (tab === 'excalidraw') {
+                document.querySelector('.tab-excalidraw').classList.add('active');
+                document.getElementById('panel-excalidraw').classList.add('active');
+            }
+        }
+
+    <!-- Supabase JS Client for Realtime Architecture Sync -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        const SUPABASE_URL = "https://rcmdstsewqhsjmlcydev.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbWRzdHNld3Foc2ptbGN5ZGV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE3MTcyODIsImV4cCI6MjEwNzI5MzI4Mn0.KV1VTkrqpl_RTeNpSC9blhD7rW3ubI-z_P2osX4r4FY";
+        const supabaseClient = (window.supabase && window.supabase.createClient) 
+            ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) 
+            : null;
+
+        async function fetchFromSupabase() {
+            if (!supabaseClient) return null;
+            try {
+                const { data, error } = await supabaseClient
+                    .from("client_briefings")
+                    .select("app_data, updated_at")
+                    .eq("id", "qls_main_briefing")
+                    .single();
+                if (data && data.app_data) {
+                    return data.app_data;
+                }
+            } catch(e) {
+                console.warn("Supabase viewer fetch error:", e);
+            }
+            return null;
+        }
+
+        async function loadClientData() {
+            let data = null;
+            try {
+                const raw = localStorage.getItem("qls_app_roadmap_data");
+                if (raw) data = JSON.parse(raw);
+            } catch(e) {
+                console.warn("Storage read error", e);
+            }
+
+            // Busca na nuvem Supabase
+            const cloudData = await fetchFromSupabase();
+            if (cloudData) {
+                data = cloudData;
+            }
+
+            if (!data) {
+                document.getElementById("clientSummaryText").innerText = "Aguardando preenchimento inicial pelo cliente no formulário.";
+                return;
+            }
+
+            const name = data.clientName || "Cliente QLS Australia";
+            let totalChecked = 0;
+            let totalItems = 0;
+
+            function renderFeedbackSection(list, containerId, badgeId, noteId, noteText) {
+                const container = document.getElementById(containerId);
+                container.innerHTML = "";
+                const items = list || [];
+                let checkedCount = 0;
+
+                items.forEach(item => {
+                    totalItems++;
+                    if (item.checked) {
+                        checkedCount++;
+                        totalChecked++;
+                    }
+
+                    const el = document.createElement("div");
+                    const isCustom = item.id && item.id.startsWith("custom_");
+                    el.className = `feedback-entry ${isCustom ? 'is-custom' : ''}`;
+                    el.innerHTML = `
+                        <div class="feedback-entry-status">
+                            <span class="icon" style="width:16px; height:16px; color:${item.checked ? 'var(--gold)' : 'var(--line-light)'};">
+                                ${item.checked 
+                                    ? '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>' 
+                                    : '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>'}
+                            </span>
+                        </div>
+                        <div class="feedback-entry-text">
+                            <strong>${escapeHtml(item.title)} ${isCustom ? '<span style="color:var(--gold-l);font-weight:700;">(Adicionado pelo Cliente)</span>' : ''}</strong>
+                            <span>${escapeHtml(item.desc || '')}</span>
+                        </div>
+                    `;
+                    container.appendChild(el);
+                });
+
+                document.getElementById(badgeId).innerText = `${checkedCount}/${items.length} validados`;
+
+                const noteEl = document.getElementById(noteId);
+                if (noteText && noteText.trim()) {
+                    noteEl.innerHTML = `
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                        <span><strong>Anotação:</strong> "${escapeHtml(noteText.trim())}"</span>
+                    `;
+                    noteEl.style.display = "flex";
+                } else {
+                    noteEl.innerHTML = `
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                        <span>Nenhuma anotação adicional informada.</span>
+                    `;
+                }
+            }
+
+            renderFeedbackSection(data.problems, "feedback-prob-list", "badge-prob", "feedback-prob-note", data.feedbacks?.problems);
+            renderFeedbackSection(data.personas, "feedback-personas-list", "badge-personas", "feedback-personas-note", data.feedbacks?.personas);
+            renderFeedbackSection(data.features, "feedback-feat-list", "badge-feat", "feedback-feat-note", data.feedbacks?.features);
+            renderFeedbackSection(data.screens, "feedback-screens-list", "badge-screens", "feedback-screens-note", data.feedbacks?.screens);
+            renderFeedbackSection(data.sprints, "feedback-sprints-list", "badge-sprints", "feedback-sprints-note", data.feedbacks?.sprints);
+
+            const calcNote = document.getElementById("feedback-calc-note");
+            if (data.feedbacks?.calc && data.feedbacks.calc.trim()) {
+                calcNote.innerHTML = `
+                    <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                    <span><strong>Anotação sobre o Cálculo IA:</strong> "${escapeHtml(data.feedbacks.calc.trim())}"</span>
+                `;
+            } else {
+                calcNote.innerHTML = `
+                    <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                    <span>Nenhuma anotação sobre o cálculo.</span>
+                `;
+            }
+
+            document.getElementById("clientSummaryText").innerText = `Validador: ${name} • ${totalChecked} de ${totalItems} itens validados`;
+            document.getElementById("tabCounter").innerText = `${totalChecked}/${totalItems}`;
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        window.addEventListener("storage", (e) => {
+            if (e.key === "qls_app_roadmap_data") {
+                loadClientData();
+            }
+        });
+
+        window.addEventListener("DOMContentLoaded", () => {
+            loadClientData();
+
+            // Realtime listening from Supabase
+            if (supabaseClient) {
+                supabaseClient
+                    .channel("realtime:client_briefings")
+                    .on("postgres_changes", { event: "*", schema: "public", table: "client_briefings" }, (payload) => {
+                        console.log("Recebida atualização em tempo real do cliente:", payload);
+                        if (payload.new && payload.new.app_data) {
+                            loadClientData();
+                        }
+                    })
+                    .subscribe();
+        });
+    </script>
+</body>
+</html>

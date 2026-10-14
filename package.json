@@ -1,0 +1,9 @@
+{
+  "name": "qls-briefing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site estatico de briefing e roadmap da QLS Lighting",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}

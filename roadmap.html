@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>QLS Lighting Australia — Validação Estrutural &amp; Roadmap do Produto</title>
+    
+    <!-- Google Fonts: Urbanist (QLS Official Primary Typeface) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           QLS OFFICIAL DESIGN SYSTEM TOKENS & CRAFT FOUNDATION
+           ========================================================================== */
+        :root {
+            /* Neutrals */
+            --black: #0a0a0a;
+            --ink: #141311;
+            --dark: #1a1814;
+            --dark-elevated: #23201b;
+            --grey: #6f6a64;
+            --mute: #9a9590;
+            --line: #3a3632;
+            --line-light: #524d47;
+            --light: #e4e0da;
+            --off: #f0eeea;
+            --white: #f8f6f2;
+            
+            /* QLS Signature Gold Palette */
+            --gold: #c9a84c;
+            --gold-d: #a8843a;
+            --gold-l: #e8b86a;
+            --gold-muted: rgba(201, 168, 76, 0.12);
+            --gold-glow: rgba(201, 168, 76, 0.24);
+            
+            /* Surface Tokens */
+            --bg: #0a0a0a;
+            --card: #141311;
+            --card-subtle: #1a1814;
+            --card-hover: #211e19;
+            --bd: #2e2b26;
+            --bd-focus: #c9a84c;
+            --fg: #e4e0da;
+            --fg-muted: #9a9590;
+            --hd: #f8f6f2;
+            
+            /* Radii */
+            --r-xs: 6px;
+            --r-s: 8px;
+            --r-m: 14px;
+            --r-l: 20px;
+            --r-p: 999px;
+            
+            /* Elevation & Animation */
+            --sh1: 0 2px 8px rgba(0, 0, 0, 0.35);
+            --sh2: 0 8px 24px rgba(0, 0, 0, 0.45);
+            --sh3: 0 16px 48px rgba(0, 0, 0, 0.65);
+            --ease: cubic-bezier(.22, .61, .36, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font: 400 16px/1.65 'Urbanist', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--fg);
+            min-height: 100vh;
+            padding-bottom: 130px;
+            -webkit-font-smoothing: antialiased;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(201, 168, 76, 0.09) 0%, transparent 60%),
+                linear-gradient(180deg, #0a0a0a 0%, #100f0d 100%);
+            background-attachment: fixed;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { color: inherit; text-decoration: none; }
+        h1, h2, h3, h4 { color: var(--hd); letter-spacing: -0.025em; line-height: 1.2; font-weight: 700; }
+
+        /* Modern SVG Icon Utility */
+        .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            vertical-align: middle;
+        }
+        .icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        /* QLS Signature Gold Gradient Bar */
+        .qls-gradient-bar {
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-l), var(--gold-d), var(--gold));
+            background-size: 300% 100%;
+            animation: qlsMoveGradient 6s ease infinite;
+            position: sticky;
+            top: 0;
+            z-index: 101;
+        }
+
+        @keyframes qlsMoveGradient {
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Navigation Header */
+        header.top-nav {
+            position: sticky;
+            top: 3px;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.90);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--bd);
+            padding: 14px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand-cluster {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .qls-logo-img {
+            height: 30px;
+            width: auto;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+        }
+
+        .brand-meta h1 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.01em;
+        }
+
+        .brand-meta p {
+            font-size: 12px;
+            color: var(--gold-l);
+            font-weight: 500;
+            margin-top: 1px;
+        }
+
+        .top-nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-outline-gold {
+            background: rgba(201, 168, 76, 0.08);
+            color: var(--gold-l);
+            border: 1px solid var(--gold-d);
+            padding: 8px 16px;
+            border-radius: var(--r-p);
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s var(--ease);
+        }
+
+        .btn-outline-gold:hover {
+            background: var(--gold);
+            color: var(--black);
+            box-shadow: 0 0 16px var(--gold-glow);
+            transform: translateY(-1px);
+        }
+
+        .status-pill {
+            font-size: 12px;
+            color: var(--gold-l);
+            background: var(--gold-muted);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            padding: 6px 14px;
+            border-radius: var(--r-p);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 920px;
+            margin: 32px auto;
+            padding: 0 24px;
+        }
+
+        /* Progress Card Header */
+        .progress-header-card {
+            background: var(--card);
+            border: 1px solid var(--bd);
+            border-radius: var(--r-l);
+            overflow: hidden;
+            box-shadow: var(--sh2);
+            margin-bottom: 32px;
+        }
+
+        .hero-visual {
+            height: 200px;
+            position: relative;
+            background: url('assets/img/living.jpg') center 45%/cover no-repeat;
+        }
+
+        .hero-visual-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,10,10,0.15) 0%, rgba(20,19,17,0.96) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 24px 32px;
+        }
+
+        .hero-tag {
+            background: var(--black);
+            border: 1px solid var(--gold-d);
+            color: var(--gold-l);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: var(--r-p);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .progress-body {
+            padding: 28px 32px;
+        }
+
+        .progress-body h2 {
+            font-size: clamp(22px, 3.2vw, 30px);
+            color: var(--white);
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .progress-body p {
+            color: var(--fg);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        /* Interactive Progress Meter */
+        .validation-meter {
+            background: var(--card-subtle);
+            border: 1px solid var(--bd);
+            border-radius: var(--r-m);
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .meter-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .meter-info strong {
+            color: var(--white);
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .meter-info span {
+            color: var(--gold-l);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .meter-bar-outer {
+            flex: 1;
+            max-width: 240px;
+            height: 8px;
+            background: var(--bg);
+            border-radius: var(--r-p);
+            overflow: hidden;
+            border: 1px solid var(--bd);
+        }
+
+        .meter-bar-inner {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold-d), var(--gold-l));
+            width: 0%;
+            transition: width 0.3s var(--ease);
+            border-radius: var(--r-p);
+        }
+
+        .client-id-bar {
+            background: var(--card-subtle);
+            border: 1px solid var(--bd);
+            border-radius: var(--r-m);
+            padding: 14px 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .client-id-bar label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gold-l);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .client-id-bar input {
+            flex: 1;
+            min-width: 220px;
+            background: var(--bg);
+            border: 1px solid var(--bd);
+            color: var(--white);
+            border-radius: var(--r-s);
+            padding: 10px 14px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .client-id-bar input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.2);
+        }
+
+        /* Sticky Fast Sub-Navigation */
+        .stage-nav {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            margin-bottom: 28px;
+            scrollbar-width: none;
+        }
+        .stage-nav::-webkit-scrollbar { display: none; }
+
+        .stage-nav-pill {
+            background: var(--card);
+            border: 1px solid var(--bd);
+            color: var(--fg-muted);
+            border-radius: var(--r-p);
+            padding: 8px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s var(--ease);
+        }
+
+        .stage-nav-pill:hover {
+            border-color: var(--gold-d);
+            color: var(--white);
+        }
+
+        .stage-nav-pill.active {
+            background: var(--gold);
+            color: var(--black);
+            border-color: var(--gold);
+            font-weight: 700;
+            box-shadow: 0 0 16px var(--gold-glow);
+        }
+
+        /* Section Cards */
+        .stage-card {
+            background: var(--card);
+            border: 1px solid var(--bd);
+            border-radius: var(--r-l);
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: var(--sh1);
+            position: relative;
+            transition: border-color 0.2s;
+        }
+
+        .stage-card:hover {
+            border-color: rgba(201, 168, 76, 0.4);
+        }
+
+        .stage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--bd);
+            padding-bottom: 18px;
+        }
+
+        .stage-step-tag {
+            background: rgba(201, 168, 76, 0.12);
+            color: var(--gold-l);
+            border: 1px solid var(--gold-d);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 12px;
+            border-radius: var(--r-p);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .stage-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -0.02em;
+        }
+
+        .stage-desc {
+            font-size: 14px;
+            color: var(--mute);
+            margin-top: 4px;
+        }
+
+        .stage-banner-img {
+            width: 100%;
+            height: 180px;
+            border-radius: var(--r-m);
+            object-fit: cover;
+            margin-bottom: 22px;
+            border: 1px solid var(--bd);
+        }
+
+        /* Item Rows */
+        .items-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .item-box {
+            background: var(--card-subtle);
+            border: 1px solid var(--bd);
+            border-radius: var(--r-m);
+            padding: 16px 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: all 0.2s var(--ease);
+        }
+
+        .item-box:hover {
+            border-color: var(--line-light);
+            background: var(--card-hover);
+        }
+
+        .item-box.is-validated {
+            border-left: 4px solid var(--gold);
+            background: linear-gradient(90deg, rgba(201, 168, 76, 0.05) 0%, var(--card-subtle) 100%);
+        }
+
+        .item-toggle-btn {
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border: 1.5px solid var(--line-light);
+            border-radius: 6px;
+            background: var(--bg);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+            transition: all 0.2s;
+            color: transparent;
+        }
+
+        .item-toggle-btn:checked {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--black);
+        }
+
+        .item-toggle-btn:checked::after {
+            content: '';
+            width: 5px;
+            height: 10px;
+            border: solid var(--black);
+            border-width: 0 2.2px 2.2px 0;
+            transform: rotate(45deg) translate(-1px, -1px);
+        }
+
+        .item-content {
+            flex: 1;
+        }
+
+        .item-title-field {
+            width: 100%;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--white);
+            background: transparent;
+            border: 1px dashed transparent;
+            padding: 3px 6px;
+            border-radius: var(--r-xs);
+            outline: none;
+        }
+
+        .item-title-field:hover, .item-title-field:focus {
+            border-color: var(--gold-d);
+            background: rgba(201, 168, 76, 0.06);
+        }
+
+        .item-desc-field {
+            width: 100%;
+            font-family: inherit;
+            font-size: 13px;
+            color: var(--fg);
+            background: transparent;
+            border: 1px dashed transparent;
+            padding: 3px 6px;
+            border-radius: var(--r-xs);
+            outline: none;
+            margin-top: 4px;
+        }
+
+        .item-desc-field:hover, .item-desc-field:focus {
+            border-color: var(--gold-d);
+            background: rgba(201, 168, 76, 0.06);
+        }
+
+        .badge-category {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: var(--r-p);
+            background: var(--dark);
+            border: 1px solid var(--bd);
+            color: var(--gold-l);
+            white-space: nowrap;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .btn-trash {
+            background: transparent;
+            border: none;
+            color: var(--grey);
+            cursor: pointer;
+            padding: 6px;
+            border-radius: var(--r-xs);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .btn-trash:hover {
+            color: #f87171;
+            background: rgba(248, 113, 113, 0.12);
+        }
+
+        /* Quick Add Item Bar */
+        .add-row {
+            background: rgba(10, 10, 10, 0.5);
+            border: 1px dashed var(--line);
+            border-radius: var(--r-m);
+            padding: 12px 16px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .add-row-input {
+            flex: 1;
+            background: var(--card-subtle);
+            border: 1px solid var(--bd);
+            color: var(--white);
+            border-radius: var(--r-s);
+            padding: 10px 14px;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .add-row-input:focus {
+            border-color: var(--gold);
+        }
+
+        .btn-add-item {
+            background: var(--gold);
+            color: var(--black);
+            border: 1px solid var(--gold);
+            padding: 10px 18px;
+            border-radius: var(--r-s);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-add-item:hover {
+            background: var(--gold-l);
+            box-shadow: 0 0 14px var(--gold-glow);
+        }
+
+        /* Client Note Box */
+        .note-card {
+            margin-top: 20px;
+            background: rgba(201, 168, 76, 0.04);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: var(--r-m);
+            padding: 16px 20px;
+        }
+
+        .note-card label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gold-l);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .note-card textarea {
+            width: 100%;
+            min-height: 72px;
+            background: var(--bg);
+            border: 1px solid var(--bd);
+            color: var(--white);
+            border-radius: var(--r-s);
+            padding: 10px 14px;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            resize: vertical;
+        }
+
+        .note-card textarea:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.15);
+        }
+
+        /* Simulator Card */
+        .sim-container {
+            background: var(--bg);
+            border: 1px solid var(--gold-d);
+            border-radius: var(--r-m);
+            padding: 24px;
+            margin-top: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+
+        .sim-inputs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .sim-field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--mute);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 6px;
+        }
+
+        .sim-field input, .sim-field select {
+            width: 100%;
+            background: var(--card-subtle);
+            border: 1px solid var(--bd);
+            color: var(--white);
+            padding: 10px 14px;
+            border-radius: var(--r-s);
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .sim-field input:focus, .sim-field select:focus {
+            border-color: var(--gold);
+        }
+
+        .sim-metrics-panel {
+            background: var(--card-subtle);
+            border: 1px solid var(--bd);
+            border-radius: var(--r-m);
+            padding: 18px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .sim-metric-col {
+            border-left: 3px solid var(--gold);
+            padding-left: 14px;
+        }
+
+        .sim-metric-label {
+            font-size: 12px;
+            color: var(--mute);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .sim-metric-value {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--gold-l);
+            margin-top: 2px;
+        }
+
+        .sim-product-card {
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.14) 0%, rgba(20, 19, 17, 0.9) 100%);
+            border: 1.5px solid var(--gold);
+            border-radius: var(--r-m);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .sim-prod-badge {
+            font-size: 11px;
+            color: var(--gold-l);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sim-prod-title {
+            color: var(--white);
+            font-size: 17px;
+            font-weight: 800;
+            margin-top: 4px;
+        }
+
+        .sim-prod-specs {
+            color: var(--fg);
+            font-size: 13px;
+            margin-top: 2px;
+        }
+
+        /* Fixed Bottom Action Dock */
+        .bottom-dock {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.94);
+            backdrop-filter: blur(18px);
+            border-top: 1px solid var(--bd);
+            padding: 14px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+            gap: 16px;
+            box-shadow: var(--sh3);
+        }
+
+        .dock-summary {
+            font-size: 14px;
+            color: var(--fg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dock-summary strong {
+            color: var(--gold-l);
+            font-weight: 700;
+        }
+
+        .btn-dock-send {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 10px 24px;
+            border-radius: var(--r-p);
+            font-size: 14px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s var(--ease);
+        }
+
+        .btn-dock-send:hover {
+            background: var(--gold-l);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px var(--gold-glow);
+        }
+
+        .btn-dock-copy {
+            background: var(--card);
+            color: var(--white);
+            border: 1px solid var(--bd);
+            padding: 10px 20px;
+            border-radius: var(--r-p);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-dock-copy:hover {
+            border-color: var(--gold-d);
+            color: var(--gold-l);
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--card);
+            border: 1px solid var(--gold);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: var(--r-p);
+            font-size: 13px;
+            font-weight: 600;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s var(--ease);
+            z-index: 200;
+            box-shadow: var(--sh3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 640px) {
+            header.top-nav { padding: 12px 16px; }
+            .container { padding: 0 16px; }
+            .progress-body { padding: 20px; }
+            .stage-card { padding: 20px; }
+            .bottom-dock { flex-direction: column; padding: 12px 16px; gap: 10px; }
+            .dock-summary { width: 100%; justify-content: space-between; }
+            .dock-actions { width: 100%; display: flex; gap: 8px; }
+            .dock-actions button, .dock-actions a { flex: 1; justify-content: center; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Signature Animated Gold Accent Line -->
+    <div class="qls-gradient-bar"></div>
+
+    <!-- Header Navigation -->
+    <header class="top-nav">
+        <div class="brand-cluster">
+            <img src="assets/brand/QLS-Logo-Horizontal-White.png" alt="QLS Lighting Australia" class="qls-logo-img">
+            <div class="brand-meta">
+                <h1>Lighting App Architecture</h1>
+                <p>Alinhamento de Escopo &amp; Validação</p>
+            </div>
+        </div>
+
+        <div class="top-nav-actions">
+            <a href="/briefing" style="border: 1px solid var(--bd); padding: 6px 14px; border-radius: var(--r-p); font-size: 13px; color: var(--gold-l); font-weight: 600; text-decoration: none; background: rgba(201, 168, 76, 0.08);">
+                Briefing Interativo ✨
+            </a>
+            <a href="/central-qls" style="border: 1px solid var(--bd); padding: 6px 14px; border-radius: var(--r-p); font-size: 13px; color: var(--fg); font-weight: 600; text-decoration: none;">
+                Central QLS →
+            </a>
+            <span class="status-pill" id="saveIndicator">
+                <span class="icon" style="width:14px; height:14px;">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span>Salvo em tempo real</span>
+            </span>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Progress Header Card -->
+        <section class="progress-header-card">
+            <div class="hero-visual">
+                <div class="hero-visual-overlay">
+                    <div>
+                        <span class="hero-tag">Normas AS/NZS 1680 • B2B / B2C RFQ</span>
+                        <h2>Consultor Luminotécnico &amp; Catálogo Digital QLS</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="progress-body">
+                <p>
+                    Validação do escopo funcional do aplicativo oficial da <strong>QLS Lighting Australia</strong>. 
+                    Revise cada etapa abaixo, marque os itens aprovados, edite textos diretamente ou adicione novas exigências de projeto.
+                </p>
+
+                <!-- Validation Meter -->
+                <div class="validation-meter">
+                    <div class="meter-info">
+                        <strong>Progresso da Validação:</strong>
+                        <span id="meterPercent">0% Validado</span>
+                    </div>
+                    <div class="meter-bar-outer">
+                        <div class="meter-bar-inner" id="meterBar"></div>
+                    </div>
+                </div>
+
+                <div class="client-id-bar">
+                    <label for="clientName">
+                        <span class="icon" style="width:16px; height:16px;">
+                            <svg viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </span>
+                        <span>Seu Nome &amp; Empresa:</span>
+                    </label>
+                    <input type="text" id="clientName" placeholder="Ex: Douglas Silva — QLS Architectural Lighting" oninput="saveData()">
+                </div>
+            </div>
+        </section>
+
+        <!-- Stage Fast Navigation -->
+        <div class="stage-nav">
+            <a href="#etapa-1" class="stage-nav-pill active">
+                <span class="icon" style="width:15px; height:15px;"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+                <span>1. Problemas</span>
+            </a>
+            <a href="#etapa-2" class="stage-nav-pill">
+                <span class="icon" style="width:15px; height:15px;"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                <span>2. Usuários</span>
+            </a>
+            <a href="#etapa-3" class="stage-nav-pill">
+                <span class="icon" style="width:15px; height:15px;"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+                <span>3. Funcionalidades</span>
+            </a>
+            <a href="#etapa-4" class="stage-nav-pill">
+                <span class="icon" style="width:15px; height:15px;"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span>
+                <span>4. Telas &amp; Navegação</span>
+            </a>
+            <a href="#etapa-5" class="stage-nav-pill">
+                <span class="icon" style="width:15px; height:15px;"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg></span>
+                <span>5. Cronograma</span>
+            </a>
+            <a href="#etapa-6" class="stage-nav-pill">
+                <span class="icon" style="width:15px; height:15px;"><svg viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></span>
+                <span>6. Simulador IA</span>
+            </a>
+        </div>
+
+        <!-- ETAPA 1: PROBLEMAS QUE O APP RESOLVE -->
+        <section id="etapa-1" class="stage-card">
+            <div class="stage-header">
+                <div>
+                    <span class="stage-step-tag">
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></span>
+                        <span>Etapa 1 • Dores de Mercado</span>
+                    </span>
+                    <h3 class="stage-title">Problemas que o App Resolve</h3>
+                    <p class="stage-desc">Gargalos operacionais eliminados para especificadores, eletricistas e equipe da fábrica.</p>
+                </div>
+            </div>
+
+            <img src="assets/img/process.jpg" alt="Processo de Especificação Técnica QLS" class="stage-banner-img">
+
+            <div class="items-stack" id="list-problems"></div>
+
+            <div class="add-row">
+                <input type="text" id="input-add-problem" class="add-row-input" placeholder="+ Digite outra dor ou problema a resolver..." onkeydown="if(event.key==='Enter') addItem('problems')">
+                <button class="btn-add-item" onclick="addItem('problems')">
+                    <span class="icon" style="width:15px; height:15px;"><svg viewBox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg></span>
+                    <span>Adicionar</span>
+                </button>
+            </div>
+
+            <div class="note-card">
+                <label for="feedback-problems">
+                    <span class="icon" style="width:16px; height:16px;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                    <span>Anotações sobre os problemas:</span>
+                </label>
+                <textarea id="feedback-problems" placeholder="Ex: Reduzir tempo de resposta para grandes cotações de edifícios comerciais..." oninput="saveData()"></textarea>
+            </div>
+        </section>
+
+        <!-- ETAPA 2: PÚBLICO-ALVO & PERFIS -->
+        <section id="etapa-2" class="stage-card">
+            <div class="stage-header">
+                <div>
+                    <span class="stage-step-tag">
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>
+                        <span>Etapa 2 • Perfis de Usuário</span>
+                    </span>
+                    <h3 class="stage-title">Público-Alvo &amp; Personas</h3>
+                    <p class="stage-desc">Quem utilizará o aplicativo no canteiro de obras, no escritório ou em casa.</p>
+                </div>
+            </div>
+
+            <img src="assets/img/suite.jpg" alt="Projetos Residenciais e Comerciais QLS" class="stage-banner-img">
+
+            <div class="items-stack" id="list-personas"></div>
+
+            <div class="add-row">
+                <input type="text" id="input-add-persona" class="add-row-input" placeholder="+ Digite outro perfil de usuário ou parceiro..." onkeydown="if(event.key==='Enter') addItem('personas')">
+                <button class="btn-add-item" onclick="addItem('personas')">
+                    <span class="icon" style="width:15px; height:15px;"><svg viewBox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg></span>
+                    <span>Adicionar</span>
+                </button>
+            </div>
+
+            <div class="note-card">
+                <label for="feedback-personas">
+                    <span class="icon" style="width:16px; height:16px;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                    <span>Observações sobre o público-alvo:</span>
+                </label>
+                <textarea id="feedback-personas" placeholder="Ex: Especificadores australianos valorizam muito o download do IES/Datasheet..." oninput="saveData()"></textarea>
+            </div>
+        </section>
+
+        <!-- ETAPA 3: FUNCIONALIDADES ESSENCIAIS (MVP) -->
+        <section id="etapa-3" class="stage-card">
+            <div class="stage-header">
+                <div>
+                    <span class="stage-step-tag">
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+                        <span>Etapa 3 • Escopo do Produto</span>
+                    </span>
+                    <h3 class="stage-title">Funcionalidades do Aplicativo (MVP)</h3>
+                    <p class="stage-desc">Recursos fundamentais calibrados para máxima conversão comercial e precisão técnica.</p>
+                </div>
+            </div>
+
+            <img src="assets/img/detail-suite.jpg" alt="Detalhe de Iluminação Linear e Pontual" class="stage-banner-img">
+
+            <div class="items-stack" id="list-features"></div>
+
+            <div class="add-row">
+                <input type="text" id="input-add-feature" class="add-row-input" placeholder="+ Digite outra funcionalidade desejada..." onkeydown="if(event.key==='Enter') addItem('features')">
+                <button class="btn-add-item" onclick="addItem('features')">
+                    <span class="icon" style="width:15px; height:15px;"><svg viewBox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg></span>
+                    <span>Adicionar</span>
+                </button>
+            </div>
+
+            <div class="note-card">
+                <label for="feedback-features">
+                    <span class="icon" style="width:16px; height:16px;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                    <span>Prioridades ou ajustes de funcionalidades:</span>
+                </label>
+                <textarea id="feedback-features" placeholder="Ex: Priorizar o cálculo de W/m² para eficiência energética..." oninput="saveData()"></textarea>
+            </div>
+        </section>
+
+        <!-- ETAPA 4: ESTRUTURA DE TELAS & NAVEGAÇÃO -->
+        <section id="etapa-4" class="stage-card">
+            <div class="stage-header">
+                <div>
+                    <span class="stage-step-tag">
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/></svg></span>
+                        <span>Etapa 4 • Arquitetura de Informação</span>
+                    </span>
+                    <h3 class="stage-title">Estrutura de Telas &amp; Navegação (Tabs)</h3>
+                    <p class="stage-desc">As 4 abas nativas com fluxo Guest-First (sem barreira de cadastro obrigatório).</p>
+                </div>
+            </div>
+
+            <div class="items-stack" id="list-screens"></div>
+
+            <div class="add-row">
+                <input type="text" id="input-add-screen" class="add-row-input" placeholder="+ Digite outra tela ou submenu..." onkeydown="if(event.key==='Enter') addItem('screens')">
+                <button class="btn-add-item" onclick="addItem('screens')">
+                    <span class="icon" style="width:15px; height:15px;"><svg viewBox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg></span>
+                    <span>Adicionar</span>
+                </button>
+            </div>
+
+            <div class="note-card">
+                <label for="feedback-screens">
+                    <span class="icon" style="width:16px; height:16px;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                    <span>Anotações sobre o fluxo de telas:</span>
+                </label>
+                <textarea id="feedback-screens" placeholder="Ex: Botão de WhatsApp direto em todas as telas de cotação..." oninput="saveData()"></textarea>
+            </div>
+        </section>
+
+        <!-- ETAPA 5: CRONOGRAMA & SPRINTS -->
+        <section id="etapa-5" class="stage-card">
+            <div class="stage-header">
+                <div>
+                    <span class="stage-step-tag">
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/></svg></span>
+                        <span>Etapa 5 • Roadmap de Engenharia</span>
+                    </span>
+                    <h3 class="stage-title">Cronograma de Sprints (Início ao Deploy)</h3>
+                    <p class="stage-desc">Sequência planejada de entrega e publicação nas lojas Apple e Google.</p>
+                </div>
+            </div>
+
+            <div class="items-stack" id="list-sprints"></div>
+
+            <div class="note-card">
+                <label for="feedback-sprints">
+                    <span class="icon" style="width:16px; height:16px;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                    <span>Prazos ou datas de marcos importantes:</span>
+                </label>
+                <textarea id="feedback-sprints" placeholder="Ex: Apresentar a versão beta para 5 grandes especificadores parceiros..." oninput="saveData()"></textarea>
+            </div>
+        </section>
+
+        <!-- ETAPA 6: SIMULADOR IA AO VIVO -->
+        <section id="etapa-6" class="stage-card">
+            <div class="stage-header">
+                <div>
+                    <span class="stage-step-tag">
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+                        <span>Etapa 6 • Simulação Técnica</span>
+                    </span>
+                    <h3 class="stage-title">Simulador do Consultor IA (Norma AS/NZS 1680)</h3>
+                    <p class="stage-desc">Simule o cálculo luminotécnico e a recomendação tripla em tempo real.</p>
+                </div>
+            </div>
+
+            <div class="sim-container">
+                <div class="sim-inputs-grid">
+                    <div class="sim-field">
+                        <label>Ambiente (Aplicação)</label>
+                        <select id="simRoomType" onchange="runSimCalc()">
+                            <option value="office">Commercial Office (320 Lux)</option>
+                            <option value="living">Living &amp; Dining (150 Lux)</option>
+                            <option value="kitchen">Kitchen Island / Prep (240 Lux)</option>
+                            <option value="retail">High-End Retail (500 Lux)</option>
+                            <option value="warehouse">Industrial &amp; Logistics (160 Lux)</option>
+                        </select>
+                    </div>
+                    <div class="sim-field">
+                        <label>Comprimento (m)</label>
+                        <input type="number" id="simLength" value="6.0" step="0.5" oninput="runSimCalc()">
+                    </div>
+                    <div class="sim-field">
+                        <label>Largura (m)</label>
+                        <input type="number" id="simWidth" value="4.5" step="0.5" oninput="runSimCalc()">
+                    </div>
+                    <div class="sim-field">
+                        <label>Pé-Direito (m)</label>
+                        <input type="number" id="simHeight" value="2.8" step="0.1" oninput="runSimCalc()">
+                    </div>
+                </div>
+
+                <div class="sim-metrics-panel">
+                    <div class="sim-metric-col">
+                        <div class="sim-metric-label">Área &amp; Meta de Iluminância</div>
+                        <div class="sim-metric-value" id="simAreaText">27.0 m² • 320 Lux</div>
+                    </div>
+                    <div class="sim-metric-col">
+                        <div class="sim-metric-label">Quantidade de Luminárias</div>
+                        <div class="sim-metric-value" id="simQtyText">6 Peças QLS</div>
+                    </div>
+                    <div class="sim-metric-col">
+                        <div class="sim-metric-label">Densidade de Potência</div>
+                        <div class="sim-metric-value" id="simPowerText">3.33 W/m² (Alta Eficiência)</div>
+                    </div>
+                </div>
+
+                <div class="sim-product-card">
+                    <div>
+                        <div class="sim-prod-badge">
+                            <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+                            <span>Escolha Recomendada QLS</span>
+                        </div>
+                        <div class="sim-prod-title" id="simProdName">QLS Downlight Pro Architectural 15W</div>
+                        <div class="sim-prod-specs" id="simProdDesc">1.500 lm • 3000K Warm White • UGR&lt;19 • IP54 • DALI Compatible</div>
+                    </div>
+                    <button class="btn-outline-gold" style="background: var(--gold); color: #000; font-weight: 700;">
+                        <span class="icon" style="width:14px; height:14px;"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+                        <span>Ficha Técnica</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="note-card" style="margin-top: 20px;">
+                <label for="feedback-calc">
+                    <span class="icon" style="width:16px; height:16px;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                    <span>Anotações sobre a inteligência de cálculo:</span>
+                </label>
+                <textarea id="feedback-calc" placeholder="Ex: Adicionar indicação do ângulo de facho ótico (ex: 24°, 36°, 60°)..." oninput="saveData()"></textarea>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Fixed Bottom Action Dock -->
+    <div class="bottom-dock">
+        <div class="dock-summary">
+            <span class="icon" style="width:18px; height:18px; color: var(--gold);"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+            <span><strong id="checkedCount">0</strong> de <span id="totalCount">0</span> itens validados</span>
+            <span style="color: var(--line);">|</span>
+            <span style="color: var(--mute);">Pronto para consolidação</span>
+        </div>
+
+        <div class="dock-actions" style="display: flex; gap: 10px;">
+            <button class="btn-dock-copy" onclick="copySummary()">
+                <span class="icon" style="width:16px; height:16px;"><svg viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span>
+                <span>Copiar Resumo</span>
+            </button>
+            <a id="whatsappBtn" href="#" target="_blank" class="btn-dock-send" onclick="generateWhatsAppLink(event)">
+                <span class="icon" style="width:16px; height:16px;"><svg viewBox="0 0 24 24"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+                <span>Enviar Validação</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast">
+        <span class="icon" style="width:16px; height:16px; color: var(--gold);"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span id="toastMsg">Resumo copiado para a área de transferência!</span>
+    </div>
+
+    <!-- Supabase JS Client for Realtime Cloud Briefing -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        // Supabase Configuration
+        const SUPABASE_URL = "https://rcmdstsewqhsjmlcydev.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbWRzdHNld3Foc2ptbGN5ZGV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE3MTcyODIsImV4cCI6MjEwNzI5MzI4Mn0.KV1VTkrqpl_RTeNpSC9blhD7rW3ubI-z_P2osX4r4FY";
+        const supabaseClient = (window.supabase && window.supabase.createClient) 
+            ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) 
+            : null;
+
+        const defaultData = {
+            clientName: "Cliente / Especificador QLS Australia",
+            problems: [
+                { id: "p1", checked: true, title: "Cálculos manuais lentos de iluminância e lúmens", desc: "Lighting designers perdem horas calculando lux em tabelas no canteiro de obras.", badge: "Core" },
+                { id: "p2", checked: true, title: "Erros de especificação técnica e devoluções", desc: "Comprar luminárias inadequadas gera retrabalho, trocas e atrasos na entrega.", badge: "Qualidade" },
+                { id: "p3", checked: true, title: "Demora na emissão de orçamentos e RFQs formais", desc: "Cotações manuais por e-mail demoram dias para retornar da fábrica.", badge: "Vendas" },
+                { id: "p4", checked: true, title: "Catálogos estáticos pesados em PDF de 200 páginas", desc: "Difíceis de pesquisar e filtrar produtos específicos no celular.", badge: "Catálogo" }
+            ],
+            personas: [
+                { id: "u1", checked: true, title: "Especificador B2B (Lighting Designers, Arquitetos, Eletricistas)", desc: "Cria projetos multi-ambientes na obra e gera memorial técnico consolidado.", badge: "B2B" },
+                { id: "u2", checked: true, title: "Cliente Final com Projeto Residencial/Comercial", desc: "Deseja iluminação de alto padrão com especificação precisa e sem erros.", badge: "B2C" },
+                { id: "u3", checked: true, title: "Equipe Comercial & Engenharia da Fábrica QLS", desc: "Recebe cotações estruturadas (RFQs) com dados exatos para faturamento.", badge: "Fábrica" }
+            ],
+            features: [
+                { id: "f1", checked: true, title: "Motor de Cálculo Luminotécnico IA (Norma AS/NZS 1680)", desc: "Entrada em 3 passos: Ambiente, Dimensões e Estilo de Luz.", badge: "Motor IA" },
+                { id: "f2", checked: true, title: "Recomendação Tripla Inteligente (Cards Glow)", desc: "Apresenta Opção Recomendada + Opção Premium + Opção Custo-Benefício.", badge: "Catálogo" },
+                { id: "f3", checked: true, title: "Memorial Descritivo & Proposta Comercial em PDF", desc: "Documento editorial de alto nível com branding QLS e fichas técnicas.", badge: "PDF Pro" },
+                { id: "f4", checked: true, title: "Envio Direto de RFQ (Pedido de Cotação) à Fábrica", desc: "Integração direta com o WhatsApp e pipeline comercial da QLS.", badge: "Vendas B2B" },
+                { id: "f5", checked: true, title: "Experiência Fluida Guest-First", desc: "Cálculo 100% aberto sem bloqueio de login inicial para maximizar conversão.", badge: "UX" }
+            ],
+            screens: [
+                { id: "s1", checked: true, title: "Aba 1: Meus Projetos (Workspace)", desc: "Lista de projetos salvos, status de orçamentos e métricas de eficiência (W/m²).", badge: "Aba 1" },
+                { id: "s2", checked: true, title: "Aba 2: Consultor Luminotécnico IA", desc: "Assistente passo a passo para dimensionar qualquer ambiente em segundos.", badge: "Aba 2" },
+                { id: "s3", checked: true, title: "Aba 3: Catálogo Digital & Showroom", desc: "Busca de luminárias QLS com filtros por CCT, IP, IRC e lúmens.", badge: "Aba 3" },
+                { id: "s4", checked: true, title: "Aba 4: Minha Conta & Histórico de Cotações", desc: "Perfil, dados cadastrais para faturamento e rastreio de RFQs.", badge: "Aba 4" }
+            ],
+            sprints: [
+                { id: "sp1", checked: true, title: "Sprint 1: Design System & Fundação UI QLS", desc: "Tokens Urbanist, paleta Gold/Dark, botões e primitivas React Native.", badge: "Fundação" },
+                { id: "sp2", checked: true, title: "Sprint 2: Motor AS/NZS 1680 & Seed do Catálogo", desc: "Algoritmo determinístico de iluminância e cadastro das linhas de produtos.", badge: "Core Engine" },
+                { id: "sp3", checked: true, title: "Sprint 3: Telas Mobile & Wizard do Consultor", desc: "Interface tátil de entrada de medidas e cards glow de recomendação.", badge: "Frontend" },
+                { id: "sp4", checked: true, title: "Sprint 4: Backend Supabase, Auth & Gerador PDF", desc: "PostgreSQL, políticas de segurança RLS e motor de PDF editorial.", badge: "Backend" },
+                { id: "sp5", checked: true, title: "Sprint 5: Testes de Usabilidade & QA", desc: "Validação em dispositivos reais iOS e Android e calibragem de lux.", badge: "QA" },
+                { id: "sp6", checked: true, title: "Sprint 6: Lançamento Apple Store & Google Play", desc: "Deploy via EAS Build e distribuição oficial para o mercado australiano.", badge: "Deploy" }
+            ],
+            feedbacks: {
+                problems: "", personas: "", features: "", screens: "", sprints: "", calc: ""
+            }
+        };
+
+        let appData = defaultData;
+        let syncTimeout = null;
+
+        function setSaveIndicator(status, text) {
+            const ind = document.getElementById("saveIndicator");
+            if (!ind) return;
+            const span = ind.querySelector("span:last-child");
+            if (span) span.innerText = text;
+
+            if (status === "syncing") {
+                ind.style.borderColor = "var(--gold)";
+                ind.style.color = "var(--gold-l)";
+            } else if (status === "saved") {
+                ind.style.borderColor = "rgba(46, 204, 113, 0.4)";
+                ind.style.color = "#2ecc71";
+            } else {
+                ind.style.borderColor = "rgba(201, 168, 76, 0.3)";
+                ind.style.color = "var(--fg)";
+            }
+        }
+
+        async function syncToSupabase() {
+            if (!supabaseClient) return;
+            setSaveIndicator("syncing", "Salvando no Supabase...");
+            try {
+                let totalChecked = 0;
+                let totalItems = 0;
+                ["problems", "personas", "features", "screens", "sprints"].forEach(sec => {
+                    (appData[sec] || []).forEach(item => {
+                        totalItems++;
+                        if (item.checked) totalChecked++;
+                    });
+                });
+                const percent = totalItems > 0 ? Math.round((totalChecked / totalItems) * 100) : 0;
+
+                const { error } = await supabaseClient
+                    .from("client_briefings")
+                    .upsert({
+                        id: "qls_main_briefing",
+                        client_name: appData.clientName || "Cliente QLS Australia",
+                        percent_validated: percent,
+                        total_checked: totalChecked,
+                        total_items: totalItems,
+                        feedbacks: appData.feedbacks,
+                        app_data: appData,
+                        last_updated_by: "client",
+                        updated_at: new Date().toISOString()
+                    });
+
+                if (error) {
+                    console.warn("Supabase sync:", error.message);
+                    setSaveIndicator("offline", "Salvo localmente");
+                } else {
+                    setSaveIndicator("saved", "Salvo no Supabase ✅");
+                }
+            } catch(e) {
+                console.warn("Supabase error:", e);
+                setSaveIndicator("offline", "Salvo localmente");
+            }
+        }
+
+        async function loadData() {
+            // 1. Renderiza rápido do cache local
+            try {
+                const saved = localStorage.getItem("qls_app_roadmap_data");
+                if (saved) appData = JSON.parse(saved);
+            } catch(e) {
+                console.warn("Storage error", e);
+            }
+            renderAll();
+
+            // 2. Busca o estado mais recente na nuvem Supabase
+            if (supabaseClient) {
+                setSaveIndicator("syncing", "Conectando ao Supabase...");
+                try {
+                    const { data, error } = await supabaseClient
+                        .from("client_briefings")
+                        .select("app_data, updated_at")
+                        .eq("id", "qls_main_briefing")
+                        .single();
+
+                    if (data && data.app_data) {
+                        appData = data.app_data;
+                        try {
+                            localStorage.setItem("qls_app_roadmap_data", JSON.stringify(appData));
+                        } catch(e) {}
+                        renderAll();
+                        setSaveIndicator("saved", "Sincronizado via Supabase ✅");
+                    } else {
+                        setSaveIndicator("saved", "Supabase conectado ✅");
+                    }
+                } catch(err) {
+                    console.warn("Supabase fetch:", err);
+                    setSaveIndicator("saved", "Salvo localmente");
+                }
+            }
+        }
+
+        function saveData() {
+            appData.clientName = document.getElementById("clientName").value;
+            appData.feedbacks.problems = document.getElementById("feedback-problems").value;
+            appData.feedbacks.personas = document.getElementById("feedback-personas").value;
+            appData.feedbacks.features = document.getElementById("feedback-features").value;
+            appData.feedbacks.screens = document.getElementById("feedback-screens").value;
+            appData.feedbacks.sprints = document.getElementById("feedback-sprints").value;
+            appData.feedbacks.calc = document.getElementById("feedback-calc").value;
+
+            try {
+                localStorage.setItem("qls_app_roadmap_data", JSON.stringify(appData));
+            } catch(e) {
+                console.error("Save error", e);
+            }
+            updateSummaryCounters();
+
+            // Sincronização em tempo real (Debounce 600ms)
+            clearTimeout(syncTimeout);
+            setSaveIndicator("syncing", "Sincronizando...");
+            syncTimeout = setTimeout(syncToSupabase, 600);
+        }
+
+        function flashSaveIndicator() {
+            const ind = document.getElementById("saveIndicator");
+            ind.style.borderColor = "var(--gold)";
+            setTimeout(() => { ind.style.borderColor = "rgba(201, 168, 76, 0.3)"; }, 300);
+        }
+
+        function renderSectionList(sectionKey, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = "";
+            const items = appData[sectionKey] || [];
+
+            items.forEach((item, index) => {
+                const row = document.createElement("div");
+                row.className = `item-box ${item.checked ? 'is-validated' : ''}`;
+                row.innerHTML = `
+                    <input type="checkbox" class="item-toggle-btn" ${item.checked ? 'checked' : ''} onchange="toggleCheck('${sectionKey}', ${index})">
+                    <div class="item-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                            <input type="text" class="item-title-field" value="${escapeHtml(item.title)}" onchange="updateItemText('${sectionKey}', ${index}, 'title', this.value)">
+                            ${item.badge ? `<span class="badge-category">${item.badge}</span>` : ''}
+                        </div>
+                        <input type="text" class="item-desc-field" value="${escapeHtml(item.desc || '')}" placeholder="Detalhes adicionais..." onchange="updateItemText('${sectionKey}', ${index}, 'desc', this.value)">
+                    </div>
+                    <button class="btn-trash" title="Remover item" onclick="deleteItem('${sectionKey}', ${index})">
+                        <span class="icon" style="width:15px; height:15px;"><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+                    </button>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        function toggleCheck(sectionKey, index) {
+            appData[sectionKey][index].checked = !appData[sectionKey][index].checked;
+            saveData();
+            renderSectionList(sectionKey, `list-${sectionKey}`);
+        }
+
+        function updateItemText(sectionKey, index, field, value) {
+            appData[sectionKey][index][field] = value;
+            saveData();
+        }
+
+        function deleteItem(sectionKey, index) {
+            appData[sectionKey].splice(index, 1);
+            saveData();
+            renderSectionList(sectionKey, `list-${sectionKey}`);
+        }
+
+        function addItem(sectionKey) {
+            const input = document.getElementById(`input-add-${sectionKey === 'problems' ? 'problem' : sectionKey === 'personas' ? 'persona' : sectionKey === 'features' ? 'feature' : sectionKey === 'screens' ? 'screen' : 'item'}`);
+            if (!input || !input.value.trim()) return;
+
+            appData[sectionKey].push({
+                id: 'custom_' + Date.now(),
+                checked: true,
+                title: input.value.trim(),
+                desc: "Requisito adicionado pelo cliente",
+                badge: "Novo"
+            });
+            input.value = "";
+            saveData();
+            renderSectionList(sectionKey, `list-${sectionKey}`);
+            showToast("Item adicionado com sucesso!");
+        }
+
+        function renderAll() {
+            document.getElementById("clientName").value = appData.clientName || "";
+            document.getElementById("feedback-problems").value = appData.feedbacks.problems || "";
+            document.getElementById("feedback-personas").value = appData.feedbacks.personas || "";
+            document.getElementById("feedback-features").value = appData.feedbacks.features || "";
+            document.getElementById("feedback-screens").value = appData.feedbacks.screens || "";
+            document.getElementById("feedback-sprints").value = appData.feedbacks.sprints || "";
+            document.getElementById("feedback-calc").value = appData.feedbacks.calc || "";
+
+            renderSectionList("problems", "list-problems");
+            renderSectionList("personas", "list-personas");
+            renderSectionList("features", "list-features");
+            renderSectionList("screens", "list-screens");
+            renderSectionList("sprints", "list-sprints");
+
+            updateSummaryCounters();
+            runSimCalc();
+        }
+
+        function updateSummaryCounters() {
+            let totalChecked = 0;
+            let totalItems = 0;
+            ["problems", "personas", "features", "screens", "sprints"].forEach(sec => {
+                (appData[sec] || []).forEach(item => {
+                    totalItems++;
+                    if (item.checked) totalChecked++;
+                });
+            });
+
+            document.getElementById("checkedCount").innerText = totalChecked;
+            document.getElementById("totalCount").innerText = totalItems;
+
+            const percent = totalItems > 0 ? Math.round((totalChecked / totalItems) * 100) : 0;
+            document.getElementById("meterPercent").innerText = `${percent}% Validado`;
+            document.getElementById("meterBar").style.width = `${percent}%`;
+        }
+
+        function runSimCalc() {
+            const roomType = document.getElementById("simRoomType").value;
+            const length = parseFloat(document.getElementById("simLength").value) || 6;
+            const width = parseFloat(document.getElementById("simWidth").value) || 4;
+            const height = parseFloat(document.getElementById("simHeight").value) || 2.8;
+
+            const area = (length * width).toFixed(1);
+            let targetLux = 320;
+            let prodName = "QLS Downlight Pro Architectural 15W";
+            let prodDesc = "1.500 lm • 3000K Warm White • UGR<19 • IP54 • DALI Compatible";
+            let lumensPerFixture = 1500;
+            let watts = 15;
+
+            if (roomType === "living") {
+                targetLux = 150;
+                prodName = "QLS Horizon Recessed Trimless 10W";
+                prodDesc = "950 lm • 2700K Ultra Warm • CRI 95 • Dimerizável";
+                lumensPerFixture = 950;
+                watts = 10;
+            } else if (roomType === "kitchen") {
+                targetLux = 240;
+                prodName = "QLS Linear Pendant Studio 30W";
+                prodDesc = "3.200 lm • 4000K Neutral White • Difusor Microprismático";
+                lumensPerFixture = 3200;
+                watts = 30;
+            } else if (roomType === "retail") {
+                targetLux = 500;
+                prodName = "QLS Track Spot 3-Circuit 25W";
+                prodDesc = "2.800 lm • 3000K • Foco Orientável 24° • CRI>90";
+                lumensPerFixture = 2800;
+                watts = 25;
+            } else if (roomType === "warehouse") {
+                targetLux = 160;
+                prodName = "QLS Highbay Industrial IP65 100W";
+                prodDesc = "14.000 lm • 5000K Daylight • Resistência IK08";
+                lumensPerFixture = 14000;
+                watts = 100;
+            }
+
+            const totalLumensNeeded = (length * width * targetLux) / (0.65 * 0.80);
+            const calculatedQty = Math.max(1, Math.ceil(totalLumensNeeded / lumensPerFixture));
+            const totalPower = (calculatedQty * watts) / (length * width);
+
+            document.getElementById("simAreaText").innerText = `${area} m² • ${targetLux} Lux`;
+            document.getElementById("simQtyText").innerText = `${calculatedQty} Peças QLS`;
+            document.getElementById("simPowerText").innerText = `${totalPower.toFixed(2)} W/m² (Alta Eficiência)`;
+            document.getElementById("simProdName").innerText = prodName;
+            document.getElementById("simProdDesc").innerText = prodDesc;
+        }
+
+        function buildFullTextSummary() {
+            const name = document.getElementById("clientName").value || "Cliente QLS Australia";
+            let text = `*📋 ALINHAMENTO DE ESCOPO — QLS LIGHTING AUSTRALIA*\n`;
+            text += `*Validador:* ${name}\n`;
+            text += `*Data:* ${new Date().toLocaleDateString('pt-BR')}\n\n`;
+
+            function appendSection(title, list, feedback) {
+                text += `*${title}:*\n`;
+                list.forEach(item => {
+                    const status = item.checked ? '[X]' : '[ ]';
+                    text += `${status} ${item.title}\n`;
+                });
+                if (feedback && feedback.trim()) {
+                    text += `*Anotação:* ${feedback.trim()}\n`;
+                }
+                text += `\n`;
+            }
+
+            appendSection("1. PROBLEMAS QUE O APP RESOLVE", appData.problems, appData.feedbacks.problems);
+            appendSection("2. PERFIS DE USUÁRIO", appData.personas, appData.feedbacks.personas);
+            appendSection("3. FUNCIONALIDADES DO MVP", appData.features, appData.feedbacks.features);
+            appendSection("4. ESTRUTURA DE TELAS & NAVEGAÇÃO", appData.screens, appData.feedbacks.screens);
+            appendSection("5. CRONOGRAMA & SPRINTS", appData.sprints, appData.feedbacks.sprints);
+
+            if (appData.feedbacks.calc && appData.feedbacks.calc.trim()) {
+                text += `*6. FEEDBACK DO MOTOR DE CÁLCULO IA:*\n${appData.feedbacks.calc.trim()}\n\n`;
+            }
+
+            text += `_Gerado via QLS Architectural Lighting Platform_`;
+            return text;
+        }
+
+        function copySummary() {
+            const text = buildFullTextSummary();
+            navigator.clipboard.writeText(text).then(() => {
+                showToast("Resumo copiado para a área de transferência!");
+            }).catch(err => {
+                alert("Texto gerado:\n\n" + text);
+            });
+        }
+
+        function generateWhatsAppLink(e) {
+            const text = buildFullTextSummary();
+            const encoded = encodeURIComponent(text);
+            const btn = document.getElementById("whatsappBtn");
+            btn.href = `https://api.whatsapp.com/send?text=${encoded}`;
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById("toast");
+            document.getElementById("toastMsg").innerText = msg;
+            toast.classList.add("show");
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 3000);
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            loadData();
+        });
+    </script>
+</body>
+</html>

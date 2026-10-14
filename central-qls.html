@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Executiva QLS — Matriz de Briefings &amp; Stakeholders</title>
+    
+    <!-- Google Fonts: Urbanist & Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Supabase JS Client via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --ink: #141311;
+            --dark: #1a1814;
+            --dark-elevated: #23201b;
+            --grey: #6f6a64;
+            --mute: #9a9590;
+            --line: #3a3632;
+            --line-light: #524d47;
+            --light: #e4e0da;
+            --white: #f8f6f2;
+            
+            --gold: #c9a84c;
+            --gold-d: #a8843a;
+            --gold-l: #e8b86a;
+            --gold-subtle: rgba(201, 168, 76, 0.09);
+            --gold-glow: rgba(201, 168, 76, 0.22);
+
+            --bg: #0a0a0a;
+            --card: #141311;
+            --card-subtle: #191815;
+            --card-hover: #211e19;
+            --bd: #2e2b26;
+            --bd-focus: #c9a84c;
+            --fg: #e4e0da;
+            --hd: #f8f6f2;
+
+            --font-main: 'Urbanist', system-ui, -apple-system, sans-serif;
+            --font-mono: 'Space Grotesk', monospace;
+            --radius-s: 8px;
+            --radius-m: 14px;
+            --radius-l: 20px;
+            --radius-pill: 999px;
+            --ease: cubic-bezier(.22, .61, .36, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg);
+            color: var(--fg);
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
+                linear-gradient(180deg, #0a0a0a 0%, #11100e 100%);
+            background-attachment: fixed;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header Principal */
+        .central-header {
+            border-bottom: 1px solid var(--line);
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(16px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 16px 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .qls-logo-img {
+            height: 28px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+        }
+
+        .header-divider {
+            width: 1px;
+            height: 22px;
+            background: var(--line);
+        }
+
+        .badge-qls {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            background: var(--gold-subtle);
+            border: 1px solid rgba(201, 168, 76, 0.35);
+            padding: 4px 10px;
+            border-radius: var(--radius-pill);
+            font-weight: 700;
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -0.02em;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--mute);
+            padding: 8px 18px;
+            border-radius: var(--radius-pill);
+            font-family: var(--font-main);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s var(--ease);
+        }
+
+        .tab-btn:hover {
+            color: var(--white);
+            border-color: var(--line);
+        }
+
+        .tab-btn.active {
+            color: var(--black);
+            background: var(--gold);
+            font-weight: 700;
+            box-shadow: 0 2px 12px var(--gold-glow);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-action {
+            background: var(--card-subtle);
+            border: 1px solid var(--bd);
+            color: var(--light);
+            padding: 8px 16px;
+            border-radius: var(--radius-s);
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s var(--ease);
+        }
+
+        .btn-action:hover {
+            border-color: var(--gold);
+            color: var(--white);
+            background: #1f1d19;
+        }
+
+        /* Container de Conteúdo */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 36px 36px 80px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Top Bar de Contexto do Projeto */
+        .project-context-bar {
+            background: var(--card);
+            border: 1px solid var(--bd);
+            border-radius: var(--radius-m);
+            padding: 24px 28px;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .project-meta-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .project-meta-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .project-meta-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -0.02em;
+        }
+
+        .project-meta-sub {
+            font-size: 14px;
+            color: var(--mute);
+        }
+
+        .project-select-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .project-select {
+            background: #0f0e0c;
+            border: 1px solid var(--line);
+            color: var(--white);
+            padding: 10px 16px;
+            border-radius: var(--radius-s);
+            font-family: var(--font-main);
+            font-size: 14px;
+            outline: none;
+            min-width: 280px;
+        }
+
+        .project-select:focus {
+            border-color: var(--gold);
+        }
+
+        /* Grid de Cards dos Respondentes */
+        .stakeholders-overview {
+            margin-bottom: 36px;
+        }
+
+        .section-headline {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .stakeholders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
+        }
+
+        .stakeholder-card {
+            background: var(--card);
+            border: 1px solid var(--bd);
+            border-radius: var(--radius-m);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            transition: all 0.2s var(--ease);
+        }
+
+        .stakeholder-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .stakeholder-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .avatar-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gold-subtle);
+            border: 1.5px solid var(--gold);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 16px;
+            font-family: var(--font-mono);
+            flex-shrink: 0;
+        }
+
+        .stakeholder-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .stakeholder-role-badge {
+            display: inline-block;
+            font-size: 12px;
+            color: var(--gold-l);
+            background: rgba(201, 168, 76, 0.12);
+            padding: 2px 8px;
+            border-radius: var(--radius-pill);
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        .stakeholder-details {
+            font-size: 13px;
+            color: var(--mute);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            border-top: 1px solid #1f1d19;
+            padding-top: 10px;
+        }
+
+        /* Matriz Comparativa Pergunta por Pergunta */
+        .comparison-matrix-card {
+            background: var(--card);
+            border: 1px solid var(--bd);
+            border-radius: var(--radius-m);
+            overflow: hidden;
+            margin-bottom: 32px;
+        }
+
+        .block-header-banner {
+            background: linear-gradient(90deg, #181613 0%, #100f0d 100%);
+            border-bottom: 1px solid var(--bd);
+            padding: 18px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .block-title-text {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--gold-l);
+            letter-spacing: -0.01em;
+        }
+
+        .question-matrix-row {
+            border-bottom: 1px solid #1a1814;
+            padding: 24px 28px;
+        }
+
+        .question-matrix-row:last-child {
+            border-bottom: none;
+        }
+
+        .matrix-question-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .q-tag {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--gold);
+            background: var(--gold-subtle);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .answers-columns-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .participant-answer-box {
+            background: #0d0c0a;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-s);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+        }
+
+        .participant-answer-box::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            bottom: 12px;
+            width: 3px;
+            background: var(--gold);
+            border-radius: 0 2px 2px 0;
+        }
+
+        .p-author-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 8px;
+        }
+
+        .p-author-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .p-author-role {
+            font-size: 11px;
+            color: var(--gold);
+            font-family: var(--font-mono);
+        }
+
+        .p-answer-text {
+            font-size: 14px;
+            color: var(--fg);
+            line-height: 1.5;
+            padding-left: 8px;
+            white-space: pre-line;
+        }
+
+        /* Modal / Formulário de Novo Projeto */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--card);
+            border: 1px solid var(--gold);
+            border-radius: var(--radius-m);
+            max-width: 560px;
+            width: 100%;
+            padding: 32px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .modal-desc {
+            font-size: 14px;
+            color: var(--mute);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: var(--mute);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .modal-input, .modal-select {
+            width: 100%;
+            background: #0f0e0c;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-s);
+            color: var(--white);
+            font-family: var(--font-main);
+            font-size: 15px;
+            padding: 12px 16px;
+            outline: none;
+        }
+
+        .modal-input:focus, .modal-select:focus {
+            border-color: var(--gold);
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        /* Toast de Cópia */
+        .toast-copied {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gold);
+            color: var(--black);
+            padding: 12px 24px;
+            border-radius: var(--radius-pill);
+            font-weight: 800;
+            font-size: 14px;
+            display: none;
+            box-shadow: 0 4px 20px rgba(201, 168, 76, 0.4);
+            z-index: 200;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Principal -->
+    <header class="central-header">
+        <div class="header-brand">
+            <img src="assets/brand/QLS-Logo-Horizontal-White.png" alt="QLS Lighting Australia" class="qls-logo-img">
+            <div class="header-divider"></div>
+            <div>
+                <span class="badge-qls">Central QLS</span>
+                <div class="header-title" style="font-size: 15px; margin-top: 2px;">Gestão Estratégica de Briefings</div>
+            </div>
+        </div>
+
+        <nav class="header-nav">
+            <button class="tab-btn active" onclick="switchTab('matrix')">Matriz Comparativa</button>
+            <button class="tab-btn" onclick="switchTab('projects')">Projetos & Links</button>
+            <button class="tab-btn" onclick="switchTab('templates')">Modelos de Briefing</button>
+        </nav>
+
+        <div class="header-actions">
+            <button class="btn-action" onclick="openNewProjectModal()">
+                + Novo Projeto
+            </button>
+            <a href="/briefing" target="_blank" class="btn-action" style="border-color: var(--gold); color: var(--gold-l);">
+                Ver Formulário do Cliente ↗
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ===================================================================
+             ABA 1: MATRIZ COMPARATIVA DE STAKEHOLDERS
+             =================================================================== -->
+        <div class="tab-content active" id="tab-matrix">
+
+            <!-- Context Bar do Projeto Ativo -->
+            <div class="project-context-bar">
+                <div class="project-meta-info">
+                    <span class="project-meta-eyebrow">Projeto Selecionado</span>
+                    <h1 class="project-meta-title" id="displayProjectTitle">QLS Lighting Australia — App Mobile Oficial</h1>
+                    <div class="project-meta-sub" id="displayProjectSubtitle">Cliente: QLS Lighting Australia Pty Ltd &bull; 3 Participantes Registrados</div>
+                </div>
+
+                <div class="project-select-wrapper">
+                    <select class="project-select" id="activeProjectSelector" onchange="changeActiveProject(this.value)">
+                        <option value="qls-lighting-app">QLS Lighting Australia — App Mobile</option>
+                    </select>
+
+                    <button class="btn-action" onclick="copyProjectLink()">
+                        🔗 Copiar Link de Compartilhamento
+                    </button>
+                    <button class="btn-action" onclick="window.print()">
+                        📄 Exportar PDF
+                    </button>
+                </div>
+            </div>
+
+            <!-- Resumo dos Respondentes -->
+            <div class="stakeholders-overview">
+                <div class="section-headline">
+                    <span>Participantes que Responderam este Briefing</span>
+                    <span style="font-size: 13px; color: var(--gold); font-weight: 600;" id="respondentCountBadge">3 Respondentes</span>
+                </div>
+
+                <div class="stakeholders-grid" id="stakeholdersListContainer">
+                    <!-- Renderizado dinamicamente via JS -->
+                </div>
+            </div>
+
+            <!-- Matriz Pergunta a Pergunta -->
+            <div class="section-headline" style="margin-top: 32px;">
+                <span>Matriz Comparativa Pergunta por Pergunta (Visão Lado a Lado)</span>
+            </div>
+
+            <div id="matrixComparisonContainer">
+                <!-- Renderizado dinamicamente via JS -->
+            </div>
+
+        </div>
+
+        <!-- ===================================================================
+             ABA 2: GESTÃO DE PROJETOS & REPLICABILIDADE
+             =================================================================== -->
+        <div class="tab-content" id="tab-projects">
+            <div class="project-context-bar">
+                <div>
+                    <span class="project-meta-eyebrow">Replicabilidade</span>
+                    <h2 class="project-meta-title">Projetos Ativos &amp; Links de Envio</h2>
+                    <p class="project-meta-sub">Crie briefings para novos clientes em 1 clique a partir de modelos prontos.</p>
+                </div>
+                <button class="btn-action" style="background: var(--gold); color: var(--black); font-weight: 700;" onclick="openNewProjectModal()">
+                    + Criar Novo Projeto
+                </button>
+            </div>
+
+            <div class="stakeholders-grid" id="allProjectsListContainer">
+                <!-- Renderizado dinamicamente via JS -->
+            </div>
+        </div>
+
+        <!-- ===================================================================
+             ABA 3: MODELOS & TEMPLATES
+             =================================================================== -->
+        <div class="tab-content" id="tab-templates">
+            <div class="project-context-bar">
+                <div>
+                    <span class="project-meta-eyebrow">Estrutura de Perguntas</span>
+                    <h2 class="project-meta-title">Modelos de Briefing Disponíveis</h2>
+                    <p class="project-meta-sub">Templates no Supabase prontos para replicação em diferentes categorias de produtos.</p>
+                </div>
+            </div>
+
+            <div class="stakeholders-grid" id="templatesListContainer">
+                <!-- Renderizado dinamicamente via JS -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal Novo Projeto -->
+    <div class="modal-overlay" id="newProjectModal">
+        <div class="modal-box">
+            <h2 class="modal-title">Novo Projeto de Briefing</h2>
+            <p class="modal-desc">Configure um novo projeto executivo para enviar aos sócios ou clientes.</p>
+
+            <div class="form-group">
+                <label>Título do Projeto *</label>
+                <input type="text" id="newProjTitle" class="modal-input" placeholder="Ex: Portal Web & E-commerce QLS">
+            </div>
+
+            <div class="form-group">
+                <label>Nome do Cliente / Empresa *</label>
+                <input type="text" id="newProjClient" class="modal-input" placeholder="Ex: QLS Lighting Australia">
+            </div>
+
+            <div class="form-group">
+                <label>Modelo de Perguntas *</label>
+                <select id="newProjTemplate" class="modal-select">
+                    <option value="app-mobile">Aplicativo Mobile & Plataforma Digital</option>
+                    <option value="saas-web">Web App SaaS & Portal do Cliente</option>
+                    <option value="branding-luxo">Identidade Visual & Branding Corporativo</option>
+                </select>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-action" onclick="closeNewProjectModal()">Cancelar</button>
+                <button class="btn-action" style="background: var(--gold); color: var(--black); font-weight: 700;" onclick="confirmCreateProject()">
+                    Criar & Gerar Link →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast de Confirmação -->
+    <div class="toast-copied" id="copyToast">Link copiado para a área de transferência!</div>
+
+    <script>
+        // ======================================================================
+        // SUPABASE & DADOS REAIS / MOCK CONSOLIDADOS
+        // ======================================================================
+        const SUPABASE_URL = 'https://rcmdstsewqhsjmlcydev.supabase.co';
+        const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbWRzdHNld3Foc2ptbGN5ZGV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE3MTcyODIsImV4cCI6MjEwNzI5MzI4Mn0.KV1VTkrqpl_RTeNpSC9blhD7rW3ubI-z_P2osX4r4FY';
+
+        var supabaseClient = null;
+        try {
+            if (window.supabase && typeof window.supabase.createClient === 'function') {
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+            }
+        } catch(e) {
+            console.warn('Central QLS Supabase init warning:', e);
+        }
+
+        // Dados de Demonstração / Histórico de Stakeholders para o Piloto
+        let mockStakeholders = [
+            {
+                id: "sub-1",
+                name: "Douglas Oliveira",
+                role: "Decisor Principal / Sócio Executivo",
+                email: "douglas@qls.com.au",
+                phone: "+61 400 123 456",
+                completedAt: "Hoje, 11:30",
+                answers: {
+                    "q-mob-1": "Permitir que arquitetos e instaladores especifiquem luminárias QLS direto na obra com cálculo de lumens em tempo real e pedido instantâneo.",
+                    "q-mob-2": "Demora na emissão de cotações manuais em PDF e falta de catálogo offline para a equipe técnica de campo.",
+                    "q-mob-3": "iOS (Apple App Store) & Android (Google Play)",
+                    "q-mob-4": "Velocidade de especificação técnica, precisão AS/NZS 1680 e conexão direta com a fábrica.",
+                    "q-mob-5": "Arquitetos e Lighting Designers, Construtoras e Gestores de Obra",
+                    "q-mob-6": "Catálogo Técnico com filtros, Calculadora Luminotécnica AS/NZS, Gerador de Orçamento em PDF",
+                    "q-mob-7": "Essencial (O usuário frequentemente está em subsolos ou obras sem sinal)",
+                    "q-mob-8": "Protocolo DALI / DALI-2, Bluetooth Low Energy (BLE)",
+                    "q-mob-9": "Supabase / PostgreSQL (Banco próprio moderno em nuvem)",
+                    "q-mob-11": "R$ 50.000 a R$ 100.000 (Solução Completa e Integrada)",
+                    "q-mob-12": "60 a 90 dias (Desenvolvimento padrão com testes aprofundados)",
+                    "q-mob-13": "Apple, Bang & Olufsen, Linear.app. Preto profundo, dourado sofisticado e linhas mínimas."
+                }
+            },
+            {
+                id: "sub-2",
+                name: "Mariana Costa",
+                role: "Diretora de Marketing & Vendas",
+                email: "mariana.costa@qls.com.au",
+                phone: "+61 411 987 654",
+                completedAt: "Hoje, 13:45",
+                answers: {
+                    "q-mob-1": "Criar um canal de vendas direto e premium que valorize a estética das luminárias e encante arquitetos com fichas impecáveis.",
+                    "q-mob-2": "Concorrentes entregam cotações mais rápido e nosso material impresso fica desatualizado em 3 meses.",
+                    "q-mob-3": "iOS (Apple App Store) & Android (Google Play)",
+                    "q-mob-4": "Design de altíssimo padrão visual e suporte rápido para especificações de luxo.",
+                    "q-mob-5": "Arquitetos e Lighting Designers, Equipe Interna de Vendas",
+                    "q-mob-6": "Catálogo Técnico com filtros, Montador de Projetos por Ambientes, Gerador de Ficha em PDF",
+                    "q-mob-7": "Desejável (Pode ter cache das últimas especificações)",
+                    "q-mob-8": "Apenas Software (Sem integração física direta no MVP)",
+                    "q-mob-9": "Supabase / PostgreSQL (Banco próprio moderno em nuvem)",
+                    "q-mob-11": "R$ 50.000 a R$ 100.000 (Solução Completa e Integrada)",
+                    "q-mob-12": "Até 30 dias (Sprint de lançamento rápido)",
+                    "q-mob-13": "Vogue Living, Dyson, Tesla, Aesop. Elegância refinada."
+                }
+            },
+            {
+                id: "sub-3",
+                name: "Carlos Mendes",
+                role: "Tech Lead / Engenharia",
+                email: "carlos.eng@qls.com.au",
+                phone: "+61 422 333 444",
+                completedAt: "Hoje, 14:15",
+                answers: {
+                    "q-mob-1": "Garantir cálculo fotométrico automatizado sem erro humano e integração com estoque e especificações técnicas dos drivers.",
+                    "q-mob-2": "Erros de cálculo de carga térmica e potência nas obras por falta de ferramenta padronizada.",
+                    "q-mob-3": "iOS (Apple App Store) & Android (Google Play)",
+                    "q-mob-4": "Confiabilidade técnica absoluta nos cálculos da norma AS/NZS 1680.",
+                    "q-mob-5": "Engenheiros Elétricos e Instaladores, Construtoras",
+                    "q-mob-6": "Calculadora Luminotécnica AS/NZS 1680, Catálogo Técnico, Controle Inteligente DALI",
+                    "q-mob-7": "Essencial (O usuário frequentemente está em subsolos ou obras sem sinal)",
+                    "q-mob-8": "Protocolo DALI / DALI-2, Zigbee 3.0 / Matter",
+                    "q-mob-9": "Supabase / PostgreSQL (Banco próprio moderno em nuvem)",
+                    "q-mob-11": "R$ 100.000 a R$ 200.000 (Plataforma Robusta com Hardware/IoT)",
+                    "q-mob-12": "60 a 90 dias (Desenvolvimento padrão com testes aprofundados)",
+                    "q-mob-13": "Linear.app, Vercel, Stripe. Alta performance técnica."
+                }
+            }
+        ];
+
+        // Seções de Perguntas Alinhadas ao Negócio
+        const SECTIONS = [
+            {
+                id: "sec-1",
+                title: "Bloco 01: Visão & Objetivos Estratégicos",
+                questions: [
+                    { id: "q-mob-1", number: "01", title: "Qual o objetivo principal deste produto digital?" },
+                    { id: "q-mob-2", number: "02", title: "Qual é o maior gargalo ou dor crítica no fluxo atual?" },
+                    { id: "q-mob-4", number: "03", title: "Qual o principal diferencial competitivo frente aos concorrentes?" }
+                ]
+            },
+            {
+                id: "sec-2",
+                title: "Bloco 02: Usuários & Funcionalidades do Aplicativo",
+                questions: [
+                    { id: "q-mob-5", number: "04", title: "Quem são os usuários de maior prioridade?" },
+                    { id: "q-mob-6", number: "05", title: "Quais módulos funcionais são fundamentais no aplicativo?" },
+                    { id: "q-additional-info", number: "06", title: "Informações Adicionais (Opcional)" }
+                ]
+            }
+        ];
+
+        // Lista de Projetos para Replicabilidade
+        let projectsList = [
+            {
+                slug: "qls-lighting-app",
+                title: "QLS Lighting Australia — App Mobile Oficial",
+                client: "QLS Lighting Australia Pty Ltd",
+                template: "Aplicativo Mobile",
+                respondentsCount: 3,
+                status: "Em Análise"
+            },
+            {
+                slug: "portal-especificadores-qls",
+                title: "Portal Web do Especificador & Arquitetura",
+                client: "QLS Lighting Australia Pty Ltd",
+                template: "Web App SaaS",
+                respondentsCount: 1,
+                status: "Aguardando Respostas"
+            }
+        ];
+
+        // ======================================================================
+        // RENDERIZAÇÃO DA MATRIZ COMPARATIVA
+        // ======================================================================
+        function renderStakeholdersGrid() {
+            const container = document.getElementById('stakeholdersListContainer');
+            container.innerHTML = '';
+
+            mockStakeholders.forEach(st => {
+                const initials = st.name.split(' ').map(n => n[0]).slice(0, 2).join('');
+                const card = document.createElement('div');
+                card.className = 'stakeholder-card';
+                card.innerHTML = `
+                    <div class="stakeholder-top">
+                        <div class="avatar-circle">${initials}</div>
+                        <div>
+                            <div class="stakeholder-name">${st.name}</div>
+                            <span class="stakeholder-role-badge">${st.role}</span>
+                        </div>
+                    </div>
+                    <div class="stakeholder-details">
+                        <span>📧 ${st.email}</span>
+                        <span>📱 ${st.phone}</span>
+                        <span style="color: #3f7a4f;">✓ Respondido: ${st.completedAt}</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            document.getElementById('respondentCountBadge').innerText = `${mockStakeholders.length} Respondentes`;
+        }
+
+        function renderComparisonMatrix() {
+            const container = document.getElementById('matrixComparisonContainer');
+            container.innerHTML = '';
+
+            SECTIONS.forEach(sec => {
+                const matrixCard = document.createElement('div');
+                matrixCard.className = 'comparison-matrix-card';
+
+                let rowsHtml = '';
+                sec.questions.forEach(q => {
+                    let answersCols = '';
+                    mockStakeholders.forEach(st => {
+                        const ans = st.answers[q.id] || 'Não respondido';
+                        answersCols += `
+                            <div class="participant-answer-box">
+                                <div class="p-author-header">
+                                    <span class="p-author-name">${st.name}</span>
+                                    <span class="p-author-role">${st.role.split('/')[0].trim()}</span>
+                                </div>
+                                <div class="p-answer-text">${ans}</div>
+                            </div>
+                        `;
+                    });
+
+                    rowsHtml += `
+                        <div class="question-matrix-row">
+                            <div class="matrix-question-title">
+                                <span class="q-tag">Q${q.number}</span>
+                                <span>${q.title}</span>
+                            </div>
+                            <div class="answers-columns-grid">
+                                ${answersCols}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                matrixCard.innerHTML = `
+                    <div class="block-header-banner">
+                        <span class="block-title-text">${sec.title}</span>
+                        <span style="font-size: 12px; color: var(--mute); font-family: var(--font-mono);">${sec.questions.length} Perguntas</span>
+                    </div>
+                    ${rowsHtml}
+                `;
+
+                container.appendChild(matrixCard);
+            });
+        }
+
+        function renderProjectsList() {
+            const container = document.getElementById('allProjectsListContainer');
+            container.innerHTML = '';
+
+            projectsList.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'stakeholder-card';
+                card.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <span class="badge-qls">${p.template}</span>
+                            <h3 style="font-size: 18px; color: var(--white); margin: 8px 0 4px 0;">${p.title}</h3>
+                            <p style="font-size: 13px; color: var(--mute);">${p.client}</p>
+                        </div>
+                    </div>
+                    <div class="stakeholder-details">
+                        <span>👥 ${p.respondentsCount} participante(s) registrado(s)</span>
+                        <span style="color: var(--gold-l);">● Status: ${p.status}</span>
+                    </div>
+                    <div style="display: flex; gap: 8px; margin-top: 8px;">
+                        <button class="btn-action" style="flex: 1; justify-content: center;" onclick="copySpecificProjectLink('${p.slug}')">
+                            Copiar Link
+                        </button>
+                        <a href="/briefing?projeto=${p.slug}" target="_blank" class="btn-action" style="justify-content: center;">
+                            Abrir ↗
+                        </a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function renderTemplatesList() {
+            const container = document.getElementById('templatesListContainer');
+            container.innerHTML = '';
+
+            const tpls = [
+                {
+                    title: "Aplicativo Mobile & Plataforma Digital",
+                    category: "Mobile Native / IoT",
+                    desc: "Ideal para apps iOS & Android, integração com hardware (DALI, Bluetooth, Zigbee), modo offline e cálculo luminotécnico.",
+                    questionsCount: 14
+                },
+                {
+                    title: "Web App SaaS & Portal do Cliente",
+                    category: "Cloud SaaS",
+                    desc: "Para plataformas web escaláveis com autenticação, dashboards analíticos, relatórios em tempo real e APIs corporativas.",
+                    questionsCount: 12
+                },
+                {
+                    title: "Identidade Visual & Branding Corporativo",
+                    category: "Design de Marca",
+                    desc: "Para concepção de marcas de luxo, embalagens, manual de identidade visual e posicionamento de mercado.",
+                    questionsCount: 10
+                }
+            ];
+
+            tpls.forEach(t => {
+                const card = document.createElement('div');
+                card.className = 'stakeholder-card';
+                card.innerHTML = `
+                    <span class="badge-qls">${t.category}</span>
+                    <h3 style="font-size: 18px; color: var(--white); margin: 8px 0 4px 0;">${t.title}</h3>
+                    <p style="font-size: 14px; color: var(--mute); line-height: 1.5;">${t.desc}</p>
+                    <div class="stakeholder-details">
+                        <span>📋 ${t.questionsCount} perguntas padronizadas no banco</span>
+                    </div>
+                    <button class="btn-action" style="margin-top: 8px; justify-content: center;" onclick="openNewProjectModalWithTemplate('${t.title}')">
+                        Criar Projeto com este Modelo →
+                    </button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // ======================================================================
+        // AÇÕES & TABS
+        // ======================================================================
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+            const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+            if (activeBtn) activeBtn.classList.add('active');
+
+            const content = document.getElementById(`tab-${tabId}`);
+            if (content) content.classList.add('active');
+        }
+
+        function copyProjectLink() {
+            const selector = document.getElementById('activeProjectSelector');
+            const slug = selector.value;
+            const fullUrl = `${window.location.origin}/briefing?projeto=${slug}`;
+            navigator.clipboard.writeText(fullUrl);
+            showToast('Link do briefing copiado para a área de transferência!');
+        }
+
+        function copySpecificProjectLink(slug) {
+            const fullUrl = `${window.location.origin}/briefing?projeto=${slug}`;
+            navigator.clipboard.writeText(fullUrl);
+            showToast(`Link de '${slug}' copiado com sucesso!`);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('copyToast');
+            toast.innerText = msg;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        function openNewProjectModal() {
+            document.getElementById('newProjectModal').classList.add('active');
+        }
+
+        function openNewProjectModalWithTemplate(tplName) {
+            openNewProjectModal();
+        }
+
+        function closeNewProjectModal() {
+            document.getElementById('newProjectModal').classList.remove('active');
+        }
+
+        function confirmCreateProject() {
+            const title = document.getElementById('newProjTitle').value.trim();
+            const client = document.getElementById('newProjClient').value.trim();
+            const tpl = document.getElementById('newProjTemplate').value;
+
+            if (!title || !client) {
+                alert('Preencha o título do projeto e o nome do cliente.');
+                return;
+            }
+
+            const slug = title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+
+            projectsList.unshift({
+                slug: slug,
+                title: title,
+                client: client,
+                template: tpl === 'app-mobile' ? 'Aplicativo Mobile' : (tpl === 'saas-web' ? 'Web App SaaS' : 'Branding'),
+                respondentsCount: 0,
+                status: "Aguardando Respostas"
+            });
+
+            // Atualizar o seletor da matriz
+            const selector = document.getElementById('activeProjectSelector');
+            const opt = document.createElement('option');
+            opt.value = slug;
+            opt.innerText = title;
+            selector.appendChild(opt);
+
+            renderProjectsList();
+            closeNewProjectModal();
+            showToast(`Projeto '${title}' criado com sucesso! Link pronto para envio.`);
+        }
+
+        // ======================================================================
+        // SINCRONIZAÇÃO COM SUPABASE REALTIME
+        // ======================================================================
+        async function fetchLiveSubmissionsFromSupabase() {
+            if (!supabaseClient) return;
+            try {
+                // 1. Buscar briefings reais registrados no Supabase
+                const { data: records, error } = await supabaseClient
+                    .from('client_briefings')
+                    .select('*')
+                    .order('updated_at', { ascending: false });
+
+                if (records && records.length > 0) {
+                    let hasNew = false;
+                    records.forEach(rec => {
+                        // Ignorar o briefing padrão se vazio
+                        if (rec.id === 'qls_main_briefing' && !rec.app_data?.respondent) return;
+
+                        const respondent = rec.app_data?.respondent || {};
+                        const name = respondent.name || rec.last_updated_by || 'Novo Participante';
+                        const role = respondent.role || 'Stakeholder';
+                        const email = respondent.email || '';
+                        const answers = rec.feedbacks || rec.app_data?.answers || {};
+
+                        // Verificar se já existe na lista
+                        const existingIdx = mockStakeholders.findIndex(s => s.id === rec.id);
+                        const updatedItem = {
+                            id: rec.id,
+                            name: name,
+                            role: role,
+                            email: email,
+                            phone: '',
+                            completedAt: new Date(rec.updated_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                            answers: answers
+                        };
+
+                        if (existingIdx >= 0) {
+                            mockStakeholders[existingIdx] = updatedItem;
+                        } else {
+                            mockStakeholders.unshift(updatedItem);
+                            hasNew = true;
+                        }
+                    });
+
+                    // Re-renderizar matriz com os novos dados
+                    renderStakeholdersGrid();
+                    renderComparisonMatrix();
+                }
+
+                // 2. Ouvir atualizações em tempo real (Supabase Realtime)
+                supabaseClient.channel('public:client_briefings')
+                    .on('postgres_changes', { event: '*', schema: 'public', table: 'client_briefings' }, () => {
+                        console.log('⚡ Atualização em tempo real recebida do Supabase!');
+                        fetchLiveSubmissionsFromSupabase();
+                    })
+                    .subscribe();
+
+            } catch(e) {
+                console.warn('Nota Supabase fetch central:', e);
+            }
+        }
+
+        // ======================================================================
+        // INICIALIZAÇÃO
+        // ======================================================================
+        window.addEventListener('DOMContentLoaded', () => {
+            renderStakeholdersGrid();
+            renderComparisonMatrix();
+            renderProjectsList();
+            renderTemplatesList();
+            fetchLiveSubmissionsFromSupabase();
+        });
+    </script>
+</body>
+</html>

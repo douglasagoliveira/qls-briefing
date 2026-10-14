@@ -1,0 +1,400 @@
+<svg width="2400" height="2800" viewBox="0 0 2400 2800" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif">
+    <defs>
+        <style>
+            .title { font-weight: 800; fill: #111827; }
+            .subtitle { font-weight: 500; fill: #4B5563; }
+            .section-title { font-weight: 700; fill: #111827; font-size: 24px; }
+            .card-title { font-weight: 700; font-size: 18px; }
+            .card-body { font-size: 14px; line-height: 1.6; fill: #374151; font-weight: 400; }
+            .badge { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+            .pill { rx: 20; ry: 20; }
+            .shadow { filter: drop-shadow(0px 8px 24px rgba(0, 0, 0, 0.06)); }
+            .shadow-sm { filter: drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.04)); }
+        </style>
+        <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#000" flood-opacity="0.07"/>
+        </filter>
+        <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f59e0b"/>
+            <stop offset="100%" stop-color="#d97706"/>
+        </linearGradient>
+        <linearGradient id="glow-circle" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fef08a" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#eab308" stop-opacity="0"/>
+        </linearGradient>
+    </defs>
+
+    <!-- Canvas Background (FigJam Dot Grid Vibe) -->
+    <rect width="2400" height="2800" fill="#F9FAFB"/>
+    
+    <!-- HEADER HERO SECTION -->
+    <g transform="translate(60, 50)">
+        <rect width="2280" height="150" rx="24" fill="#111827" filter="url(#card-shadow)"/>
+        
+        <!-- FigJam Style Sticker Pill -->
+        <rect x="40" y="30" width="140" height="32" rx="16" fill="#FBBF24"/>
+        <text x="110" y="51" text-anchor="middle" font-size="13" font-weight="800" fill="#78350F">FIGJAM BOARD</text>
+        
+        <text x="200" y="52" font-size="28" font-weight="800" fill="#FFFFFF">💡 QLS LIGHTING APP — ARQUITETURA DE PRODUTO, UX &amp; ROADMAP</text>
+        <text x="40" y="105" font-size="16" fill="#D1D5DB">Consultor Luminotécnico com IA (Normas AS/NZS 1680) + Catálogo Digital B2B/B2C RFQ | Documento de Estrutura Inicial</text>
+        
+        <!-- Stamp stickers -->
+        <rect x="2040" y="35" width="180" height="42" rx="21" fill="#8B5CF6"/>
+        <text x="2130" y="61" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">✨ PRONTO P/ DEV</text>
+    </g>
+
+    <!-- SECTION 1: PROBLEMAS & PROPOSTA DE VALOR (STICKY NOTES) -->
+    <g transform="translate(60, 240)">
+        <rect width="2280" height="460" rx="24" fill="#FFFFFF" filter="url(#card-shadow)"/>
+        <text x="40" y="50" class="section-title">📌 1. Visão Geral, Problemas que Resolve &amp; Proposta de Valor</text>
+        
+        <!-- Sticky Note 1: Problemas (Yellow FigJam Sticky) -->
+        <g transform="translate(40, 80)">
+            <rect width="700" height="340" rx="16" fill="#FEF08A" filter="url(#card-shadow)"/>
+            <rect x="25" y="25" width="110" height="26" rx="13" fill="#EAB308"/>
+            <text x="80" y="42" text-anchor="middle" font-size="11" font-weight="800" fill="#713F12">DORES ATUAIS</text>
+            <text x="25" y="80" font-size="20" font-weight="800" fill="#713F12">Problemas no Mercado de Iluminação</text>
+            <text x="25" y="115" class="card-body">
+                <tspan x="25" dy="0">• Especificadores perdem horas calculando lúmens e lux manualmente.</tspan>
+                <tspan x="25" dy="28">• Clientes compram LEDs inadequados por falta de consultoria técnica.</tspan>
+                <tspan x="25" dy="28">• Fábrica sobrecarregada com dúvidas repetitivas no WhatsApp.</tspan>
+                <tspan x="25" dy="28">• Orçamentos manuais lentos geram perda de vendas para concorrentes.</tspan>
+                <tspan x="25" dy="28">• Erros de especificação geram devoluções e retrabalho na obra.</tspan>
+            </text>
+        </g>
+
+        <!-- Sticky Note 2: Solução (Green FigJam Sticky) -->
+        <g transform="translate(780, 80)">
+            <rect width="720" height="340" rx="16" fill="#BBF7D0" filter="url(#card-shadow)"/>
+            <rect x="25" y="25" width="130" height="26" rx="13" fill="#22C55E"/>
+            <text x="90" y="42" text-anchor="middle" font-size="11" font-weight="800" fill="#14532D">SOLUÇÃO QLS</text>
+            <text x="25" y="80" font-size="20" font-weight="800" fill="#14532D">Consultor Inteligente + Catálogo B2B</text>
+            <text x="25" y="115" class="card-body">
+                <tspan x="25" dy="0">• Motor IA calcula automaticamente conforme a norma AS/NZS 1680.</tspan>
+                <tspan x="25" dy="28">• Entrada tátil em 3 passos: Ambiente, Medidas (C x L x H) e Estilo.</tspan>
+                <tspan x="25" dy="28">• Recomendação Tripla Glow: Best Match, Premium e Econômica.</tspan>
+                <tspan x="25" dy="28">• Geração instantânea de Memorial Descritivo em PDF profissional.</tspan>
+                <tspan x="25" dy="28">• Envio de cotação oficial (RFQ) direto para o comercial da fábrica.</tspan>
+            </text>
+        </g>
+
+        <!-- Sticky Note 3: Personas (Purple FigJam Sticky) -->
+        <g transform="translate(1540, 80)">
+            <rect width="700" height="340" rx="16" fill="#E9D5FF" filter="url(#card-shadow)"/>
+            <rect x="25" y="25" width="100" height="26" rx="13" fill="#A855F7"/>
+            <text x="75" y="42" text-anchor="middle" font-size="11" font-weight="800" fill="#581C87">USUÁRIOS</text>
+            <text x="25" y="80" font-size="20" font-weight="800" fill="#581C87">Quem se Beneficia do App?</text>
+            <text x="25" y="115" class="card-body">
+                <tspan x="25" dy="0"><tspan font-weight="700">👤 Arquitetos &amp; Lighting Designers:</tspan> Agilidade na obra e PDF técnico.</tspan>
+                <tspan x="25" dy="28"><tspan font-weight="700">👤 Eletricistas &amp; Construtores:</tspan> Quantitativo exato de peças e fiação.</tspan>
+                <tspan x="25" dy="28"><tspan font-weight="700">👤 Clientes Finais (B2C):</tspan> Certeza de iluminação bonita e confortável.</tspan>
+                <tspan x="25" dy="28"><tspan font-weight="700">🏭 Equipe Comercial QLS:</tspan> RFQs prontos para fechar pedidos em minutos.</tspan>
+            </text>
+        </g>
+    </g>
+
+    <!-- SECTION 2: MAPA DE NAVEGAÇÃO & ESTRUTURA DE PÁGINAS -->
+    <g transform="translate(60, 740)">
+        <rect width="2280" height="660" rx="24" fill="#FFFFFF" filter="url(#card-shadow)"/>
+        <text x="40" y="50" class="section-title">🗺️ 2. Estrutura de Navegação &amp; Arquitetura de Telas</text>
+        <text x="40" y="80" class="subtitle">Hierarquia em 4 Bottom Tabs com fluxo Guest-First (sem barreira de login inicial)</text>
+
+        <!-- Tab 1 Card (Blue) -->
+        <g transform="translate(40, 110)">
+            <rect width="520" height="510" rx="18" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2"/>
+            <rect x="25" y="25" width="120" height="28" rx="14" fill="#3B82F6"/>
+            <text x="85" y="44" text-anchor="middle" font-size="12" font-weight="800" fill="#FFFFFF">TAB 1 • HOME</text>
+            <text x="25" y="85" font-size="20" font-weight="800" fill="#1E3A8A">📁 Workspace Projetos</text>
+            <text x="25" y="125" class="card-body">
+                <tspan x="25" dy="0"><tspan font-weight="700">• Tela Principal:</tspan> Cards de projetos ativos</tspan>
+                <tspan x="25" dy="24">• Resumo de potência e eficiência (W/m²)</tspan>
+                <tspan x="25" dy="24">• Status do RFQ (Em Análise, Aprovado)</tspan>
+                <tspan x="25" dy="24">• Botão Flutuante [+ Novo Projeto]</tspan>
+                <tspan x="25" dy="32"><tspan font-weight="700">↳ Modal Novo Projeto:</tspan></tspan>
+                <tspan x="25" dy="22">   Nome, Endereço, Tipo de Edificação</tspan>
+                <tspan x="25" dy="32"><tspan font-weight="700">↳ Painel Consolidado do Projeto:</tspan></tspan>
+                <tspan x="25" dy="22">   Lista de Cômodos + Total de Peças</tspan>
+                <tspan x="25" dy="22">   [📄 Gerar Memorial PDF Editorial]</tspan>
+                <tspan x="25" dy="22">   [🚀 Solicitar Cotação Oficial RFQ]</tspan>
+            </text>
+        </g>
+
+        <!-- Tab 2 Card (Gold - Core Engine) -->
+        <g transform="translate(590, 110)">
+            <rect width="550" height="510" rx="18" fill="#FFFBEB" stroke="#D97706" stroke-width="3" filter="url(#card-shadow)"/>
+            <rect x="25" y="25" width="150" height="28" rx="14" fill="#D97706"/>
+            <text x="100" y="44" text-anchor="middle" font-size="12" font-weight="800" fill="#FFFFFF">TAB 2 • CORE IA</text>
+            <text x="25" y="85" font-size="20" font-weight="800" fill="#78350F">💡 Consultor com IA</text>
+            <text x="25" y="125" class="card-body">
+                <tspan x="25" dy="0"><tspan font-weight="700">• Wizard Tátil em 3 Passos:</tspan></tspan>
+                <tspan x="25" dy="24">   1️⃣ <tspan font-weight="600">Ambiente:</tspan> Cozinha, Sala, Suíte, Office...</tspan>
+                <tspan x="25" dy="24">   2️⃣ <tspan font-weight="600">Medidas:</tspan> Sliders de C x L x H + Teto</tspan>
+                <tspan x="25" dy="24">       ↳ Cálculo em tempo real de Lux e Lúmens</tspan>
+                <tspan x="25" dy="24">   3️⃣ <tspan font-weight="600">Estilo:</tspan> 2700K / 3000K / 4000K + UGR/IP</tspan>
+                <tspan x="25" dy="32"><tspan font-weight="700">↳ Tela de Resultados (Tripla Recomendação):</tspan></tspan>
+                <tspan x="25" dy="22">   ⭐ <tspan font-weight="600">Best Match IA:</tspan> Luminária perfeita calibrada</tspan>
+                <tspan x="25" dy="22">   💎 <tspan font-weight="600">Premium Choice:</tspan> Alta arquitetura e conforto</tspan>
+                <tspan x="25" dy="22">   💰 <tspan font-weight="600">Smart Eco:</tspan> Eficiência e melhor custo</tspan>
+                <tspan x="25" dy="22">   ↳ Seletor de Acabamento &amp; Adicionar ao Projeto</tspan>
+            </text>
+        </g>
+
+        <!-- Tab 3 Card (Green) -->
+        <g transform="translate(1170, 110)">
+            <rect width="520" height="510" rx="18" fill="#F0FDF4" stroke="#16A34A" stroke-width="2"/>
+            <rect x="25" y="25" width="130" height="28" rx="14" fill="#16A34A"/>
+            <text x="90" y="44" text-anchor="middle" font-size="12" font-weight="800" fill="#FFFFFF">TAB 3 • SHOWROOM</text>
+            <text x="25" y="85" font-size="20" font-weight="800" fill="#14532D">📖 Catálogo Digital</text>
+            <text x="25" y="125" class="card-body">
+                <tspan x="25" dy="0"><tspan font-weight="700">• Grid de Luminárias com Efeito Glow</tspan></tspan>
+                <tspan x="25" dy="24">• Filtros por Categoria e Aplicação</tspan>
+                <tspan x="25" dy="24">• Busca instantânea por SKU ou Nome</tspan>
+                <tspan x="25" dy="32"><tspan font-weight="700">↳ Tela de Detalhes do Produto:</tspan></tspan>
+                <tspan x="25" dy="22">   • Simulador Visual de Temperatura (CCT)</tspan>
+                <tspan x="25" dy="22">   • Especificações Técnicas (lm/W, IRC, UGR)</tspan>
+                <tspan x="25" dy="22">   • Furo de Instalação (Cutout) e Drivers</tspan>
+                <tspan x="25" dy="22">   • Download de Arquivo IES / Fotometria</tspan>
+                <tspan x="25" dy="22">   • [Adicionar Luminária a um Projeto]</tspan>
+            </text>
+        </g>
+
+        <!-- Tab 4 Card (Purple) -->
+        <g transform="translate(1720, 110)">
+            <rect width="520" height="510" rx="18" fill="#FAF5FF" stroke="#9333EA" stroke-width="2"/>
+            <rect x="25" y="25" width="130" height="28" rx="14" fill="#9333EA"/>
+            <text x="90" y="44" text-anchor="middle" font-size="12" font-weight="800" fill="#FFFFFF">TAB 4 • CLIENTE</text>
+            <text x="25" y="85" font-size="20" font-weight="800" fill="#581C87">👤 Minha Conta &amp; RFQs</text>
+            <text x="25" y="125" class="card-body">
+                <tspan x="25" dy="0"><tspan font-weight="700">• Perfil do Usuário &amp; Empresa</tspan></tspan>
+                <tspan x="25" dy="24">• Histórico de Propostas Solicitadas</tspan>
+                <tspan x="25" dy="32"><tspan font-weight="700">↳ Linha do Tempo da Cotação:</tspan></tspan>
+                <tspan x="25" dy="22">   1. RFQ Enviado à Fábrica</tspan>
+                <tspan x="25" dy="22">   2. Em Análise de Engenharia</tspan>
+                <tspan x="25" dy="22">   3. Proposta com Preços Especiais</tspan>
+                <tspan x="25" dy="22">   4. Pedido Faturado / Em Envio</tspan>
+                <tspan x="25" dy="32"><tspan font-weight="700">• Suporte Especializado QLS:</tspan></tspan>
+                <tspan x="25" dy="22">   Botão direto para WhatsApp da Engenharia</tspan>
+            </text>
+        </g>
+    </g>
+
+    <!-- SECTION 3: WIREFRAME VISUAL DO CONSULTOR (CORE UX) -->
+    <g transform="translate(60, 1440)">
+        <rect width="2280" height="660" rx="24" fill="#111827" filter="url(#card-shadow)"/>
+        <text x="40" y="50" font-size="24" font-weight="800" fill="#FBBF24">📐 3. Wireframe Estrutural: Fluxo da Função Central (Consultor IA)</text>
+        <text x="40" y="80" font-size="15" fill="#9CA3AF">Interface tátil e intuitiva com cálculo em tempo real e tripla recomendação com iluminação simulada</text>
+
+        <!-- Step 1 Mobile Mockup -->
+        <g transform="translate(40, 110)">
+            <rect width="510" height="510" rx="20" fill="#1F2937" stroke="#374151" stroke-width="2"/>
+            <rect x="20" y="20" width="120" height="24" rx="12" fill="#F59E0B"/>
+            <text x="80" y="36" text-anchor="middle" font-size="11" font-weight="800" fill="#78350F">PASSO 1 DE 3</text>
+            <text x="20" y="75" font-size="18" font-weight="800" fill="#FFFFFF">Tipo de Ambiente</text>
+            <text x="20" y="100" font-size="13" fill="#9CA3AF">Selecione o espaço para aplicar a norma AS/NZS</text>
+            
+            <!-- Room Selection Tiles -->
+            <rect x="20" y="125" width="225" height="75" rx="12" fill="#D97706" stroke="#FBBF24" stroke-width="2"/>
+            <text x="35" y="155" font-size="16" font-weight="700" fill="#FFFFFF">🍳 Cozinha / Gourmet</text>
+            <text x="35" y="180" font-size="12" fill="#FEF3C7">Norma: 240-300 Lux ✅</text>
+
+            <rect x="265" y="125" width="225" height="75" rx="12" fill="#374151"/>
+            <text x="280" y="155" font-size="16" font-weight="700" fill="#E5E7EB">🛋️ Sala de Estar</text>
+            <text x="280" y="180" font-size="12" fill="#9CA3AF">Norma: 150-200 Lux</text>
+
+            <rect x="20" y="215" width="225" height="75" rx="12" fill="#374151"/>
+            <text x="35" y="245" font-size="16" font-weight="700" fill="#E5E7EB">🛏️ Suíte Master</text>
+            <text x="35" y="270" font-size="12" fill="#9CA3AF">Norma: 100-150 Lux</text>
+
+            <rect x="265" y="215" width="225" height="75" rx="12" fill="#374151"/>
+            <text x="280" y="245" font-size="16" font-weight="700" fill="#E5E7EB">💻 Home Office</text>
+            <text x="280" y="270" font-size="12" fill="#9CA3AF">Norma: 320-500 Lux</text>
+
+            <!-- Bottom Button -->
+            <rect x="20" y="440" width="470" height="48" rx="24" fill="url(#gold-grad)"/>
+            <text x="255" y="470" text-anchor="middle" font-size="15" font-weight="700" fill="#111827">Avançar para Dimensões →</text>
+        </g>
+
+        <!-- Step 2 Mobile Mockup -->
+        <g transform="translate(580, 110)">
+            <rect width="520" height="510" rx="20" fill="#1F2937" stroke="#374151" stroke-width="2"/>
+            <rect x="20" y="20" width="120" height="24" rx="12" fill="#F59E0B"/>
+            <text x="80" y="36" text-anchor="middle" font-size="11" font-weight="800" fill="#78350F">PASSO 2 DE 3</text>
+            <text x="20" y="75" font-size="18" font-weight="800" fill="#FFFFFF">Medidas do Cômodo</text>
+            
+            <text x="20" y="115" font-size="14" fill="#E5E7EB">Comprimento: <tspan font-weight="700" fill="#FBBF24">4.50 metros</tspan></text>
+            <rect x="20" y="130" width="480" height="8" rx="4" fill="#374151"/>
+            <rect x="20" y="130" width="260" height="8" rx="4" fill="#F59E0B"/>
+            <circle cx="280" cy="134" r="10" fill="#FBBF24"/>
+
+            <text x="20" y="175" font-size="14" fill="#E5E7EB">Largura: <tspan font-weight="700" fill="#FBBF24">3.20 metros</tspan></text>
+            <rect x="20" y="190" width="480" height="8" rx="4" fill="#374151"/>
+            <rect x="20" y="190" width="200" height="8" rx="4" fill="#F59E0B"/>
+            <circle cx="220" cy="194" r="10" fill="#FBBF24"/>
+
+            <text x="20" y="235" font-size="14" fill="#E5E7EB">Pé-Direito: <tspan font-weight="700" fill="#FBBF24">2.80 metros</tspan></text>
+            <rect x="20" y="250" width="480" height="8" rx="4" fill="#374151"/>
+            <rect x="20" y="250" width="160" height="8" rx="4" fill="#F59E0B"/>
+            <circle cx="180" cy="254" r="10" fill="#FBBF24"/>
+
+            <!-- Real-time feedback box -->
+            <rect x="20" y="285" width="480" height="130" rx="14" fill="#111827" stroke="#F59E0B" stroke-dasharray="4 4"/>
+            <text x="35" y="315" font-size="13" font-weight="700" fill="#FBBF24">📊 CÁLCULO LUMINOTÉCNICO EM TEMPO REAL:</text>
+            <text x="35" y="345" font-size="13" fill="#E5E7EB">• Área Total: 14.40 m² | Índice do Recinto (K): 1.05</text>
+            <text x="35" y="370" font-size="13" fill="#E5E7EB">• Meta Norma AS/NZS 1680: 300 Lux</text>
+            <text x="35" y="395" font-size="13" fill="#E5E7EB">• Fluxo Total Requerido: ~6.000 Lúmens</text>
+
+            <rect x="20" y="440" width="480" height="48" rx="24" fill="url(#gold-grad)"/>
+            <text x="260" y="470" text-anchor="middle" font-size="15" font-weight="700" fill="#111827">Avançar para Estilo de Luz →</text>
+        </g>
+
+        <!-- Step 3 Mobile Mockup -->
+        <g transform="translate(1130, 110)">
+            <rect width="520" height="510" rx="20" fill="#1F2937" stroke="#374151" stroke-width="2"/>
+            <rect x="20" y="20" width="120" height="24" rx="12" fill="#F59E0B"/>
+            <text x="80" y="36" text-anchor="middle" font-size="11" font-weight="800" fill="#78350F">PASSO 3 DE 3</text>
+            <text x="20" y="75" font-size="18" font-weight="800" fill="#FFFFFF">Temperatura &amp; Estilo</text>
+            
+            <rect x="20" y="105" width="480" height="65" rx="12" fill="#D97706" stroke="#FBBF24" stroke-width="2"/>
+            <text x="35" y="132" font-size="15" font-weight="700" fill="#FFFFFF">✨ 3000K — Warm White (Conforto Elegante)</text>
+            <text x="35" y="155" font-size="12" fill="#FEF3C7">Tom acolhedor sofisticado. Padrão QLS.</text>
+
+            <rect x="20" y="185" width="480" height="65" rx="12" fill="#374151"/>
+            <text x="35" y="212" font-size="15" font-weight="700" fill="#E5E7EB">🕯️ 2700K — Ultra Warm (Relaxamento)</text>
+            <text x="35" y="235" font-size="12" fill="#9CA3AF">Luz intimista ideal para dormitórios e lounges.</text>
+
+            <rect x="20" y="265" width="480" height="65" rx="12" fill="#374151"/>
+            <text x="35" y="292" font-size="15" font-weight="700" fill="#E5E7EB">🔬 4000K — Neutral White (Alta Fidelidade)</text>
+            <text x="35" y="315" font-size="12" fill="#9CA3AF">Ideal para bancadas de trabalho e escritórios.</text>
+
+            <rect x="20" y="345" width="480" height="70" rx="12" fill="#111827"/>
+            <text x="35" y="375" font-size="13" fill="#FBBF24">Exigências Especiais:</text>
+            <text x="35" y="400" font-size="13" fill="#E5E7EB">[x] UGR &lt; 19 Antiglare  |  [ ] IP65 Umidade</text>
+
+            <rect x="20" y="440" width="480" height="48" rx="24" fill="url(#gold-grad)"/>
+            <text x="260" y="470" text-anchor="middle" font-size="15" font-weight="700" fill="#111827">✨ Calcular Iluminação com IA</text>
+        </g>
+
+        <!-- Result Screen Mockup -->
+        <g transform="translate(1680, 110)">
+            <rect width="560" height="510" rx="20" fill="#1F2937" stroke="#F59E0B" stroke-width="3" filter="url(#card-shadow)"/>
+            <rect x="20" y="20" width="160" height="24" rx="12" fill="#F59E0B"/>
+            <text x="100" y="36" text-anchor="middle" font-size="11" font-weight="800" fill="#78350F">RESULTADO CALCULADO</text>
+            
+            <!-- Glow Effect Visual Box -->
+            <rect x="20" y="60" width="520" height="150" rx="14" fill="#000000"/>
+            <circle cx="260" cy="110" r="60" fill="url(#glow-circle)"/>
+            <circle cx="260" cy="110" r="22" fill="#FFFFFF"/>
+            <text x="260" y="185" text-anchor="middle" font-size="14" font-weight="800" fill="#FBBF24">AURORA DEEP ARCHITECTURAL 12W</text>
+
+            <text x="20" y="235" font-size="13" font-weight="700" fill="#FBBF24">⭐ RECOMENDAÇÃO PRINCIPAL (BEST MATCH IA):</text>
+            <text x="20" y="260" font-size="13" fill="#E5E7EB">• Quantidade Calculada: <tspan font-weight="700" fill="#FBBF24">6x Peças no Teto</tspan></text>
+            <text x="20" y="282" font-size="13" fill="#E5E7EB">• Iluminância Entregue: <tspan font-weight="700" fill="#22C55E">312 Lux (Conforme AS/NZS 1680 ✅)</tspan></text>
+            <text x="20" y="304" font-size="13" fill="#E5E7EB">• Lúmens: 1050 lm | IRC &gt; 92 | UGR &lt; 16 | Facho: 38°</text>
+            <text x="20" y="326" font-size="13" fill="#E5E7EB">• Acabamento: [• Preto Fosco]  [ Branco ]  [ Ouro Latão ]</text>
+
+            <rect x="20" y="350" width="520" height="65" rx="10" fill="#111827"/>
+            <text x="35" y="375" font-size="12" fill="#9CA3AF">Opções Alternativas Disponíveis:</text>
+            <text x="35" y="398" font-size="12" fill="#E5E7EB">💎 Linha Premium (Darklight)  |  💰 Linha Eco (Slim 9W)</text>
+
+            <rect x="20" y="440" width="520" height="48" rx="24" fill="url(#gold-grad)"/>
+            <text x="280" y="470" text-anchor="middle" font-size="15" font-weight="700" fill="#111827">+ Selecionar &amp; Salvar no Projeto</text>
+        </g>
+    </g>
+
+    <!-- SECTION 4: ROADMAP CRONOLÓGICO DE DESENVOLVIMENTO -->
+    <g transform="translate(60, 2140)">
+        <rect width="2280" height="580" rx="24" fill="#FFFFFF" filter="url(#card-shadow)"/>
+        <text x="40" y="50" class="section-title">🗓️ 4. Roadmap Cronológico da Criação do App (Fases 1 a 6)</text>
+        <text x="40" y="80" class="subtitle">Planejamento executivo de desenvolvimento ágil, testes e publicação nas App Stores</text>
+
+        <!-- Sprint 1 -->
+        <g transform="translate(40, 110)">
+            <rect width="350" height="420" rx="16" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
+            <rect x="20" y="20" width="100" height="24" rx="12" fill="#F59E0B"/>
+            <text x="70" y="36" text-anchor="middle" font-size="11" font-weight="800" fill="#78350F">SPRINT 1</text>
+            <text x="20" y="75" font-size="17" font-weight="800" fill="#78350F">Fundação &amp; Design</text>
+            <text x="20" y="115" class="card-body">
+                <tspan x="20" dy="0">• Paleta QLS Gold &amp; Dark</tspan>
+                <tspan x="20" dy="24">• Tipografia Urbanist</tspan>
+                <tspan x="20" dy="24">• Primitivas UI (Button, Input)</tspan>
+                <tspan x="20" dy="24">• GlowCard Component</tspan>
+                <tspan x="20" dy="24">• Badges de Conformidade</tspan>
+            </text>
+        </g>
+
+        <!-- Sprint 2 -->
+        <g transform="translate(420, 110)">
+            <rect width="350" height="420" rx="16" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2"/>
+            <rect x="20" y="20" width="100" height="24" rx="12" fill="#3B82F6"/>
+            <text x="70" y="36" text-anchor="middle" font-size="11" font-weight="800" fill="#FFFFFF">SPRINT 2</text>
+            <text x="20" y="75" font-size="17" font-weight="800" fill="#1E3A8A">Motor IA &amp; Catálogo</text>
+            <text x="20" y="115" class="card-body">
+                <tspan x="20" dy="0">• Regras AS/NZS 1680</tspan>
+                <tspan x="20" dy="24">• Fórmulas Físicas de Lux</tspan>
+                <tspan x="20" dy="24">• Índice do Recinto (K)</tspan>
+                <tspan x="20" dy="24">• Seed do Catálogo QLS</tspan>
+                <tspan x="20" dy="24">• Algoritmo de Tripla Escolha</tspan>
+            </text>
+        </g>
+
+        <!-- Sprint 3 -->
+        <g transform="translate(800, 110)">
+            <rect width="350" height="420" rx="16" fill="#F0FDF4" stroke="#16A34A" stroke-width="2"/>
+            <rect x="20" y="20" width="100" height="24" rx="12" fill="#16A34A"/>
+            <text x="70" y="36" text-anchor="middle" font-size="11" font-weight="800" fill="#FFFFFF">SPRINT 3</text>
+            <text x="20" y="75" font-size="17" font-weight="800" fill="#14532D">Telas &amp; Navegação</text>
+            <text x="20" y="115" class="card-body">
+                <tspan x="20" dy="0">• Bottom Tabs + Stacks</tspan>
+                <tspan x="20" dy="24">• Wizard do Consultor IA</tspan>
+                <tspan x="20" dy="24">• Cards com Efeito Glow</tspan>
+                <tspan x="20" dy="24">• Showroom &amp; Simulador CCT</tspan>
+                <tspan x="20" dy="24">• Painel Consolidado</tspan>
+            </text>
+        </g>
+
+        <!-- Sprint 4 -->
+        <g transform="translate(1180, 110)">
+            <rect width="350" height="420" rx="16" fill="#FAF5FF" stroke="#9333EA" stroke-width="2"/>
+            <rect x="20" y="20" width="100" height="24" rx="12" fill="#9333EA"/>
+            <text x="70" y="36" text-anchor="middle" font-size="11" font-weight="800" fill="#FFFFFF">SPRINT 4</text>
+            <text x="20" y="75" font-size="17" font-weight="800" fill="#581C87">Backend &amp; Supabase</text>
+            <text x="20" y="115" class="card-body">
+                <tspan x="20" dy="0">• Tabelas PostgreSQL + RLS</tspan>
+                <tspan x="20" dy="24">• Auth Guest-First</tspan>
+                <tspan x="20" dy="24">• Gerador de Memorial PDF</tspan>
+                <tspan x="20" dy="24">• Pipeline RFQ &amp; Webhooks</tspan>
+                <tspan x="20" dy="24">• Storage de Datasheets</tspan>
+            </text>
+        </g>
+
+        <!-- Sprint 5 -->
+        <g transform="translate(1560, 110)">
+            <rect width="350" height="420" rx="16" fill="#FFF7ED" stroke="#EA580C" stroke-width="2"/>
+            <rect x="20" y="20" width="100" height="24" rx="12" fill="#EA580C"/>
+            <text x="70" y="36" text-anchor="middle" font-size="11" font-weight="800" fill="#FFFFFF">SPRINT 5</text>
+            <text x="20" y="75" font-size="17" font-weight="800" fill="#7C2D12">QA &amp; Validação</text>
+            <text x="20" y="115" class="card-body">
+                <tspan x="20" dy="0">• Testes Unitários de Lux</tspan>
+                <tspan x="20" dy="24">• Testes E2E de Ponta a Ponta</tspan>
+                <tspan x="20" dy="24">• Testes em Aparelhos Reais</tspan>
+                <tspan x="20" dy="24">• Toque Mínimo 48px</tspan>
+                <tspan x="20" dy="24">• Ajuste de Safe Areas</tspan>
+            </text>
+        </g>
+
+        <!-- Sprint 6 -->
+        <g transform="translate(1940, 110)">
+            <rect width="300" height="420" rx="16" fill="#ECFDF5" stroke="#059669" stroke-width="2"/>
+            <rect x="20" y="20" width="100" height="24" rx="12" fill="#059669"/>
+            <text x="70" y="36" text-anchor="middle" font-size="11" font-weight="800" fill="#FFFFFF">SPRINT 6</text>
+            <text x="20" y="75" font-size="17" font-weight="800" fill="#064E3B">Deploy &amp; Stores</text>
+            <text x="20" y="115" class="card-body">
+                <tspan x="20" dy="0">• Build EAS iOS &amp; Android</tspan>
+                <tspan x="20" dy="24">• Apple TestFlight</tspan>
+                <tspan x="20" dy="24">• Google Play Internal</tspan>
+                <tspan x="20" dy="24">• Publicação Oficial</tspan>
+                <tspan x="20" dy="24">• Suporte Comercial</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

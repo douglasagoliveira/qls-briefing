@@ -1,0 +1,305 @@
+<svg width="2400" height="2700" viewBox="0 0 2400 2700" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'Open Sans', 'Segoe UI', Helvetica, Arial, sans-serif">
+    <defs>
+        <filter id="miro-shadow" x="-5%" y="-5%" width="110%" height="110%">
+            <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.08"/>
+        </filter>
+    </defs>
+
+    <!-- Miro Board Canvas -->
+    <rect width="2400" height="2700" fill="#F4F5F7"/>
+
+    <!-- MIRO BOARD TITLE BAR -->
+    <g transform="translate(60, 40)">
+        <rect width="2280" height="130" rx="12" fill="#050038" filter="url(#miro-shadow)"/>
+        <!-- Miro Logo Tag -->
+        <rect x="35" y="30" width="100" height="30" rx="6" fill="#FFD02F"/>
+        <text x="85" y="51" text-anchor="middle" font-size="14" font-weight="900" fill="#050038">MIRO</text>
+        <text x="155" y="52" font-size="26" font-weight="800" fill="#FFFFFF">QLS Lighting App — Enterprise Architecture &amp; Delivery Board</text>
+        <text x="35" y="98" font-size="15" fill="#B3B9C4">Documento Estrutural Oficial para Validação de Engenharia, UX e Roadmap Cronológico</text>
+    </g>
+
+    <!-- FRAME 1: PROBLEM & VALUE PROPOSITION -->
+    <g transform="translate(60, 200)">
+        <!-- Miro Frame Container -->
+        <rect width="2280" height="480" rx="12" fill="#FFFFFF" stroke="#D5D9E2" stroke-width="1.5" filter="url(#miro-shadow)"/>
+        <rect x="25" y="15" width="220" height="30" rx="6" fill="#EBECF0"/>
+        <text x="35" y="35" font-size="13" font-weight="700" fill="#42526E">FRAME 1: PROBLEM &amp; VALUE</text>
+        <text x="25" y="75" font-size="22" font-weight="800" fill="#091E42">Visão Geral, Dores do Mercado &amp; Proposta de Valor</text>
+
+        <!-- Sticky Note 1 (Yellow Classic Miro) -->
+        <g transform="translate(35, 95)">
+            <rect width="700" height="350" rx="8" fill="#FFF9B8" filter="url(#miro-shadow)"/>
+            <text x="30" y="45" font-size="18" font-weight="800" fill="#172B4D">⚠️ Problemas que o App Resolve</text>
+            <text x="30" y="85" font-size="14" fill="#172B4D" line-height="1.6">
+                <tspan x="30" dy="0">1. Especificadores e designers perdem tempo com cálculos manuais.</tspan>
+                <tspan x="30" dy="26">2. Clientes finais adquirem iluminárias incorretas (sem conformidade).</tspan>
+                <tspan x="30" dy="26">3. Gargalos constantes no atendimento comercial da fábrica QLS.</tspan>
+                <tspan x="30" dy="26">4. Falta de padronização nas normas australianas (AS/NZS 1680).</tspan>
+                <tspan x="30" dy="26">5. Orçamentos demorados causam perda de leads qualificados.</tspan>
+            </text>
+        </g>
+
+        <!-- Sticky Note 2 (Green Classic Miro) -->
+        <g transform="translate(770, 95)">
+            <rect width="720" height="350" rx="8" fill="#D5F692" filter="url(#miro-shadow)"/>
+            <text x="30" y="45" font-size="18" font-weight="800" fill="#172B4D">✨ Solução &amp; Proposta de Valor QLS</text>
+            <text x="30" y="85" font-size="14" fill="#172B4D">
+                <tspan x="30" dy="0">1. Consultor Inteligente em 3 Etapas Rápidas e Táteis.</tspan>
+                <tspan x="30" dy="26">2. Motor com Fórmulas Determinísticas AS/NZS 1680.</tspan>
+                <tspan x="30" dy="26">3. Recomendação Tripla com Glow: Best Match, Premium e Eco.</tspan>
+                <tspan x="30" dy="26">4. Memorial Descritivo em PDF instantâneo com quantitativo (BOM).</tspan>
+                <tspan x="30" dy="26">5. Pipeline de RFQ com envio direto ao sistema comercial da fábrica.</tspan>
+            </text>
+        </g>
+
+        <!-- Sticky Note 3 (Cyan/Violet Classic Miro) -->
+        <g transform="translate(1525, 95)">
+            <rect width="720" height="350" rx="8" fill="#A6CCF5" filter="url(#miro-shadow)"/>
+            <text x="30" y="45" font-size="18" font-weight="800" fill="#091E42">👥 Perfis de Usuário &amp; Benefícios</text>
+            <text x="30" y="85" font-size="14" fill="#091E42">
+                <tspan x="30" dy="0"><tspan font-weight="700">• Especificador B2B:</tspan> Agilidade na obra e proposta em PDF profissional.</tspan>
+                <tspan x="30" dy="26"><tspan font-weight="700">• Cliente Final B2C:</tspan> Segurança de comprar a quantidade e luz exatas.</tspan>
+                <tspan x="30" dy="26"><tspan font-weight="700">• Fábrica QLS:</tspan> Automação total do funil de cotação e especificações.</tspan>
+                <tspan x="30" dy="26"><tspan font-weight="700">• Eletricistas:</tspan> Informações claras de furação (cutout) e potência.</tspan>
+            </text>
+        </g>
+    </g>
+
+    <!-- FRAME 2: INFORMATION ARCHITECTURE & TABS -->
+    <g transform="translate(60, 710)">
+        <rect width="2280" height="660" rx="12" fill="#FFFFFF" stroke="#D5D9E2" stroke-width="1.5" filter="url(#miro-shadow)"/>
+        <rect x="25" y="15" width="220" height="30" rx="6" fill="#EBECF0"/>
+        <text x="35" y="35" font-size="13" font-weight="700" fill="#42526E">FRAME 2: APP STRUCTURE</text>
+        <text x="25" y="75" font-size="22" font-weight="800" fill="#091E42">Estrutura de Páginas &amp; Arquitetura de Navegação</text>
+
+        <!-- Tab 1 -->
+        <g transform="translate(35, 95)">
+            <rect width="530" height="520" rx="10" fill="#FFFFFF" stroke="#0052CC" stroke-width="2"/>
+            <rect x="20" y="20" width="130" height="26" rx="4" fill="#0052CC"/>
+            <text x="85" y="38" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">TAB 1: PROJETOS</text>
+            <text x="20" y="78" font-size="19" font-weight="800" fill="#091E42">📁 Workspace</text>
+            <text x="20" y="115" font-size="14" fill="#172B4D">
+                <tspan x="20" dy="0">• Listagem de Projetos do Usuário</tspan>
+                <tspan x="20" dy="24">• Resumo de Carga Elétrica e Eficiência</tspan>
+                <tspan x="20" dy="24">• Status de RFQ (Badges de Progresso)</tspan>
+                <tspan x="20" dy="32"><tspan font-weight="700">Sub-Telas &amp; Modais:</tspan></tspan>
+                <tspan x="20" dy="22">↳ Modal Novo Projeto (Nome, Local)</tspan>
+                <tspan x="20" dy="22">↳ Painel Consolidado de Cômodos</tspan>
+                <tspan x="20" dy="22">↳ Gerador de Memorial Descritivo (PDF)</tspan>
+                <tspan x="20" dy="22">↳ Botão de Envio de Cotação (RFQ)</tspan>
+            </text>
+        </g>
+
+        <!-- Tab 2 -->
+        <g transform="translate(595, 95)">
+            <rect width="550" height="520" rx="10" fill="#FFFBEB" stroke="#FF991F" stroke-width="2.5"/>
+            <rect x="20" y="20" width="160" height="26" rx="4" fill="#FF991F"/>
+            <text x="100" y="38" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">TAB 2: CONSULTOR IA</text>
+            <text x="20" y="78" font-size="19" font-weight="800" fill="#091E42">💡 Motor de Iluminação</text>
+            <text x="20" y="115" font-size="14" fill="#172B4D">
+                <tspan x="20" dy="0"><tspan font-weight="700">Wizard em 3 Passos Táteis:</tspan></tspan>
+                <tspan x="20" dy="24">1️⃣ Seleção de Cômodo (Normas AS/NZS)</tspan>
+                <tspan x="20" dy="24">2️⃣ Medidas (C x L x H) + Feedback em Tempo Real</tspan>
+                <tspan x="20" dy="24">3️⃣ Temperatura de Cor (2700K / 3000K / 4000K)</tspan>
+                <tspan x="20" dy="32"><tspan font-weight="700">Tela de Resultados com Glow:</tspan></tspan>
+                <tspan x="20" dy="22">⭐ Recomendada (Best Match IA)</tspan>
+                <tspan x="20" dy="22">💎 Premium (Alto Conforto UGR &lt; 16)</tspan>
+                <tspan x="20" dy="22">💰 Econômica (Smart Cost)</tspan>
+                <tspan x="20" dy="22">↳ Seletor de Acabamento &amp; Inclusão no Projeto</tspan>
+            </text>
+        </g>
+
+        <!-- Tab 3 -->
+        <g transform="translate(1175, 95)">
+            <rect width="520" height="520" rx="10" fill="#FFFFFF" stroke="#00875A" stroke-width="2"/>
+            <rect x="20" y="20" width="140" height="26" rx="4" fill="#00875A"/>
+            <text x="90" y="38" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">TAB 3: SHOWROOM</text>
+            <text x="20" y="78" font-size="19" font-weight="800" fill="#091E42">📖 Catálogo Digital</text>
+            <text x="20" y="115" font-size="14" fill="#172B4D">
+                <tspan x="20" dy="0">• Grid de Luminárias com Efeito Glow</tspan>
+                <tspan x="20" dy="24">• Filtros: Downlights, Pendentes, Fitas, Trilhos</tspan>
+                <tspan x="20" dy="24">• Busca Instantânea por Nome ou SKU</tspan>
+                <tspan x="20" dy="32"><tspan font-weight="700">Tela Detalhes do Produto:</tspan></tspan>
+                <tspan x="20" dy="22">↳ Simulador Interativo de Kelvin (CCT)</tspan>
+                <tspan x="20" dy="22">↳ Especificações de Engenharia QLS</tspan>
+                <tspan x="20" dy="22">↳ Download de Arquivo IES / Fotometria</tspan>
+                <tspan x="20" dy="22">↳ Botão [Adicionar ao Projeto]</tspan>
+            </text>
+        </g>
+
+        <!-- Tab 4 -->
+        <g transform="translate(1725, 95)">
+            <rect width="520" height="520" rx="10" fill="#FFFFFF" stroke="#6554C0" stroke-width="2"/>
+            <rect x="20" y="20" width="140" height="26" rx="4" fill="#6554C0"/>
+            <text x="90" y="38" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">TAB 4: MINHA CONTA</text>
+            <text x="20" y="78" font-size="19" font-weight="800" fill="#091E42">👤 Perfil &amp; RFQs</text>
+            <text x="20" y="115" font-size="14" fill="#172B4D">
+                <tspan x="20" dy="0">• Dados Cadastrais Profissionais (B2B)</tspan>
+                <tspan x="20" dy="24">• Histórico Completo de Cotações</tspan>
+                <tspan x="20" dy="32"><tspan font-weight="700">Timeline da Cotação:</tspan></tspan>
+                <tspan x="20" dy="22">1. RFQ Enviado à Fábrica</tspan>
+                <tspan x="20" dy="22">2. Em Análise de Engenharia</tspan>
+                <tspan x="20" dy="22">3. Proposta Emitida com Preços Especiais</tspan>
+                <tspan x="20" dy="22">4. Pedido em Separação</tspan>
+                <tspan x="20" dy="32">• Canal Direto WhatsApp com Engenharia</tspan>
+            </text>
+        </g>
+    </g>
+
+    <!-- FRAME 3: CORE FEATURE WIREFRAME -->
+    <g transform="translate(60, 1400)">
+        <rect width="2280" height="660" rx="12" fill="#091E42" stroke="#4C9AFF" stroke-width="1.5" filter="url(#miro-shadow)"/>
+        <rect x="25" y="15" width="230" height="30" rx="6" fill="#172B4D"/>
+        <text x="35" y="35" font-size="13" font-weight="700" fill="#4C9AFF">FRAME 3: CORE WIREFRAME</text>
+        <text x="25" y="75" font-size="22" font-weight="800" fill="#FFFFFF">Wireframe Estrutural: Função Central do Consultor Luminotécnico</text>
+
+        <!-- Step 1 Tile -->
+        <g transform="translate(35, 95)">
+            <rect width="520" height="520" rx="8" fill="#172B4D" stroke="#4C9AFF" stroke-width="1.5"/>
+            <text x="25" y="45" font-size="17" font-weight="800" fill="#FFC400">PASSO 1: AMBIENTE</text>
+            <text x="25" y="85" font-size="14" fill="#FFFFFF">
+                <tspan x="25" dy="0">Selecione o cômodo:</tspan>
+                <tspan x="25" dy="30">[🍳 Cozinha / Gourmet] -&gt; ATIVO</tspan>
+                <tspan x="25" dy="20">Norma AS/NZS 1680: 240-300 Lux</tspan>
+                <tspan x="25" dy="35">[🛋️ Sala de Estar]   [🛏️ Dormitório]</tspan>
+                <tspan x="25" dy="30">[💻 Home Office]      [🚿 Banheiro]</tspan>
+                <tspan x="25" dy="30">[🌿 Deck Externo]</tspan>
+                <tspan x="25" dy="50">----------------------------------</tspan>
+                <tspan x="25" dy="30">[ Botão: Avançar para Medidas -&gt; ]</tspan>
+            </text>
+        </g>
+
+        <!-- Step 2 Tile -->
+        <g transform="translate(585, 95)">
+            <rect width="540" height="520" rx="8" fill="#172B4D" stroke="#4C9AFF" stroke-width="1.5"/>
+            <text x="25" y="45" font-size="17" font-weight="800" fill="#FFC400">PASSO 2: DIMENSÕES TÁTEIS</text>
+            <text x="25" y="85" font-size="14" fill="#FFFFFF">
+                <tspan x="25" dy="0">Comprimento (C): [ 4.50 m ] ---o---</tspan>
+                <tspan x="25" dy="30">Largura (L):     [ 3.20 m ] -----o-</tspan>
+                <tspan x="25" dy="30">Pé-Direito (H):  [ 2.80 m ] --o----</tspan>
+                <tspan x="25" dy="45">📊 FEEDBACK EM TEMPO REAL:</tspan>
+                <tspan x="25" dy="25">• Área Calculada: 14.40 m²</tspan>
+                <tspan x="25" dy="25">• Meta Norma: 300 Lux</tspan>
+                <tspan x="25" dy="25">• Lúmens Necessários: ~6.000 lm</tspan>
+                <tspan x="25" dy="45">----------------------------------</tspan>
+                <tspan x="25" dy="30">[ Botão: Avançar para Estilo -&gt; ]</tspan>
+            </text>
+        </g>
+
+        <!-- Step 3 Tile -->
+        <g transform="translate(1155, 95)">
+            <rect width="520" height="520" rx="8" fill="#172B4D" stroke="#4C9AFF" stroke-width="1.5"/>
+            <text x="25" y="45" font-size="17" font-weight="800" fill="#FFC400">PASSO 3: ESTILO &amp; CCT</text>
+            <text x="25" y="85" font-size="14" fill="#FFFFFF">
+                <tspan x="25" dy="0">Escolha a Temperatura de Cor:</tspan>
+                <tspan x="25" dy="30">(•) 3000K Warm White (Conforto)</tspan>
+                <tspan x="25" dy="25">( ) 2700K Ultra Warm (Intimista)</tspan>
+                <tspan x="25" dy="25">( ) 4000K Neutral White (Foco)</tspan>
+                <tspan x="25" dy="40">Exigências Especiais:</tspan>
+                <tspan x="25" dy="25">[x] UGR &lt; 19 Antiglare</tspan>
+                <tspan x="25" dy="25">[ ] IP65 Resistência a Umidade</tspan>
+                <tspan x="25" dy="45">----------------------------------</tspan>
+                <tspan x="25" dy="30">[ ✨ Calcular Iluminação com IA ]</tspan>
+            </text>
+        </g>
+
+        <!-- Result Tile -->
+        <g transform="translate(1705, 95)">
+            <rect width="540" height="520" rx="8" fill="#000000" stroke="#FFC400" stroke-width="2.5"/>
+            <text x="25" y="45" font-size="17" font-weight="800" fill="#FFC400">RESULTADO: RECOMENDAÇÃO</text>
+            <text x="25" y="85" font-size="14" fill="#FFFFFF">
+                <tspan x="25" dy="0">[⭐ RECOMENDADA]  [💎 PREMIUM]  [💰 ECO]</tspan>
+                <tspan x="25" dy="30"><tspan font-weight="700" fill="#FFC400">AURORA DEEP ARCHITECTURAL 12W</tspan></tspan>
+                <tspan x="25" dy="25">• Quantidade Calculada: 6x Peças</tspan>
+                <tspan x="25" dy="25">• Iluminância: 312 Lux (Conforme ✅)</tspan>
+                <tspan x="25" dy="25">• 1050 lm | IRC &gt; 92 | UGR &lt; 16 | Facho 38°</tspan>
+                <tspan x="25" dy="30">Acabamento: [• Preto]  [ Branco ]  [ Ouro ]</tspan>
+                <tspan x="25" dy="45">+--------------------------------+</tspan>
+                <tspan x="25" dy="25">|  [ + Selecionar Esta Opção ]   | (Gold)</tspan>
+                <tspan x="25" dy="25">+--------------------------------+</tspan>
+                <tspan x="25" dy="25">[ 📄 Ver Memorial ]  [ 🚀 Enviar RFQ ]</tspan>
+            </text>
+        </g>
+    </g>
+
+    <!-- FRAME 4: CHRONOLOGICAL ROADMAP -->
+    <g transform="translate(60, 2090)">
+        <rect width="2280" height="560" rx="12" fill="#FFFFFF" stroke="#D5D9E2" stroke-width="1.5" filter="url(#miro-shadow)"/>
+        <rect x="25" y="15" width="220" height="30" rx="6" fill="#EBECF0"/>
+        <text x="35" y="35" font-size="13" font-weight="700" fill="#42526E">FRAME 4: ROADMAP TIMELINE</text>
+        <text x="25" y="75" font-size="22" font-weight="800" fill="#091E42">Cronograma Executivo de Desenvolvimento (Sprints 1 a 6)</text>
+
+        <!-- Sprint Cards -->
+        <g transform="translate(35, 95)">
+            <rect width="350" height="420" rx="8" fill="#FFF0B3" stroke="#FFAB00" stroke-width="1.5"/>
+            <text x="20" y="40" font-size="16" font-weight="800" fill="#172B4D">SPRINT 1: Fundação</text>
+            <text x="20" y="80" font-size="13" fill="#172B4D">
+                <tspan x="20" dy="0">• Paleta QLS Gold/Dark</tspan>
+                <tspan x="20" dy="22">• Fonte Urbanist</tspan>
+                <tspan x="20" dy="22">• Primitivas UI</tspan>
+                <tspan x="20" dy="22">• GlowCard System</tspan>
+                <tspan x="20" dy="22">• Badges Normativas</tspan>
+            </text>
+        </g>
+
+        <g transform="translate(415, 95)">
+            <rect width="350" height="420" rx="8" fill="#DEEBFF" stroke="#0052CC" stroke-width="1.5"/>
+            <text x="20" y="40" font-size="16" font-weight="800" fill="#091E42">SPRINT 2: Motor IA</text>
+            <text x="20" y="80" font-size="13" fill="#091E42">
+                <tspan x="20" dy="0">• Normas AS/NZS 1680</tspan>
+                <tspan x="20" dy="22">• Fórmulas Físicas de Lux</tspan>
+                <tspan x="20" dy="22">• Índice do Recinto (K)</tspan>
+                <tspan x="20" dy="22">• Catálogo Seed QLS</tspan>
+                <tspan x="20" dy="22">• Tripla Recomendação</tspan>
+            </text>
+        </g>
+
+        <g transform="translate(795, 95)">
+            <rect width="350" height="420" rx="8" fill="#E3FCEF" stroke="#00875A" stroke-width="1.5"/>
+            <text x="20" y="40" font-size="16" font-weight="800" fill="#006644">SPRINT 3: Telas UI</text>
+            <text x="20" y="80" font-size="13" fill="#006644">
+                <tspan x="20" dy="0">• Bottom Tabs Globais</tspan>
+                <tspan x="20" dy="22">• Wizard 3 Passos</tspan>
+                <tspan x="20" dy="22">• Cards com Glow</tspan>
+                <tspan x="20" dy="22">• Showroom &amp; CCT Slider</tspan>
+                <tspan x="20" dy="22">• Painel do Projeto</tspan>
+            </text>
+        </g>
+
+        <g transform="translate(1175, 95)">
+            <rect width="350" height="420" rx="8" fill="#EAE6FF" stroke="#6554C0" stroke-width="1.5"/>
+            <text x="20" y="40" font-size="16" font-weight="800" fill="#403294">SPRINT 4: Backend</text>
+            <text x="20" y="80" font-size="13" fill="#403294">
+                <tspan x="20" dy="0">• Supabase PostgreSQL</tspan>
+                <tspan x="20" dy="22">• Políticas RLS &amp; Auth</tspan>
+                <tspan x="20" dy="22">• Gerador PDF Editorial</tspan>
+                <tspan x="20" dy="22">• Pipeline de RFQs</tspan>
+                <tspan x="20" dy="22">• Storage de Datasheets</tspan>
+            </text>
+        </g>
+
+        <g transform="translate(1555, 95)">
+            <rect width="350" height="420" rx="8" fill="#FFE380" stroke="#FF8B00" stroke-width="1.5"/>
+            <text x="20" y="40" font-size="16" font-weight="800" fill="#BF2600">SPRINT 5: QA &amp; Testes</text>
+            <text x="20" y="80" font-size="13" fill="#BF2600">
+                <tspan x="20" dy="0">• Testes Unitários de Lux</tspan>
+                <tspan x="20" dy="22">• Testes E2E de Ponta</tspan>
+                <tspan x="20" dy="22">• Validação em Celulares</tspan>
+                <tspan x="20" dy="22">• Toques Mínimos 48px</tspan>
+                <tspan x="20" dy="22">• Safe Areas &amp; Haptics</tspan>
+            </text>
+        </g>
+
+        <g transform="translate(1935, 95)">
+            <rect width="310" height="420" rx="8" fill="#E3FCEF" stroke="#36B37E" stroke-width="1.5"/>
+            <text x="20" y="40" font-size="16" font-weight="800" fill="#006644">SPRINT 6: Deploy</text>
+            <text x="20" y="80" font-size="13" fill="#006644">
+                <tspan x="20" dy="0">• Build EAS iOS/Android</tspan>
+                <tspan x="20" dy="22">• Apple TestFlight</tspan>
+                <tspan x="20" dy="22">• Google Play Internal</tspan>
+                <tspan x="20" dy="22">• Lançamento Oficial</tspan>
+                <tspan x="20" dy="22">• Suporte a Vendas</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

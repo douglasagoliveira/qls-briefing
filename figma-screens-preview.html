@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>QLS Lighting App — Figma Screens Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --ink: #1a1814;
+      --dark: #3a3632;
+      --grey: #6f6a64;
+      --mute: #9a9590;
+      --line: #3a3632;
+      --light: #e4e0da;
+      --off: #181715;
+      --white: #f8f6f2;
+      --gold: #c9a84c;
+      --gold-dark: #a8843a;
+      --gold-light: #e8b86a;
+      --ok: #3f7a4f;
+      --warn: #b7791f;
+      --err: #b3382c;
+      --info: #2f5d8a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Urbanist', sans-serif; }
+    body { background: #000; color: var(--white); padding: 40px; display: flex; flex-direction: column; gap: 40px; align-items: center; }
+    h1 { color: var(--gold); font-size: 28px; margin-bottom: 20px; }
+    .canvas { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; }
+    
+    /* Device Frame (iPhone 16 Pro Style - 393 x 852) */
+    .phone-frame {
+      width: 393px;
+      height: 852px;
+      background: var(--black);
+      border-radius: 48px;
+      border: 4px solid var(--dark);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    }
+    .status-bar {
+      height: 44px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .island {
+      width: 110px;
+      height: 30px;
+      background: #000;
+      border-radius: 20px;
+      margin: 0 auto;
+    }
+    .screen-content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .nav-bar {
+      height: 72px;
+      background: var(--ink);
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 10px;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      color: var(--grey);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .nav-item.active { color: var(--gold); }
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px 24px;
+      border-radius: 9999px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+    }
+    .btn-gold { background: var(--gold); color: var(--black); }
+    .btn-outline { background: transparent; border: 1.5px solid var(--gold); color: var(--gold); }
+    .card {
+      background: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card-glow {
+      background: radial-gradient(circle at 50% 20%, rgba(201,168,76,0.2) 0%, var(--ink) 70%);
+      border: 1.5px solid var(--gold);
+      box-shadow: 0 8px 30px rgba(201,168,76,0.15);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      align-self: flex-start;
+    }
+    .badge-gold { background: rgba(201,168,76,0.2); color: var(--gold); border: 1px solid var(--gold); }
+    .badge-green { background: rgba(63,122,79,0.2); color: #4ade80; border: 1px solid var(--ok); }
+    .header-title { font-size: 24px; font-weight: 700; color: var(--white); letter-spacing: -0.03em; }
+    .subtext { font-size: 14px; color: var(--mute); line-height: 1.4; }
+  </style>
+</head>
+<body>
+
+  <h1>QLS Lighting App — Telas Prontas para Importação no Figma</h1>
+
+  <div class="canvas">
+
+    <!-- TELA 1: HOME / WORKSPACE DE PROJETOS -->
+    <div class="phone-frame">
+      <div class="status-bar">
+        <span>09:41</span>
+        <div class="island"></div>
+        <span>100% 🔋</span>
+      </div>
+      <div class="screen-content">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-weight: 700; color: var(--gold); font-size: 18px;">QLS LIGHTING</span>
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--dark); display: grid; place-items: center;">👤</div>
+        </div>
+        
+        <div>
+          <div class="header-title">Projetos</div>
+          <div class="subtext">Consultoria e orçamentos em andamento</div>
+        </div>
+
+        <div class="card card-glow">
+          <div class="badge badge-gold">NOVO PROJETO</div>
+          <div style="font-weight: 700; font-size: 16px;">Dimensionar Ambiente com IA</div>
+          <div class="subtext">Cálculo de iluminância AS/NZS 1680 instantâneo.</div>
+          <button class="btn btn-gold" style="margin-top: 6px;">+ Criar Projeto</button>
+        </div>
+
+        <div style="font-size: 14px; font-weight: 700; color: var(--grey); margin-top: 10px;">PROJETOS RECENTES</div>
+
+        <div class="card">
+          <div style="display: flex; justify-content: space-between;">
+            <span style="font-weight: 700; font-size: 15px;">Residência Mosman</span>
+            <span class="badge badge-green">RFQ Enviado</span>
+          </div>
+          <div class="subtext">📍 Sydney, NSW • Atualizado há 2h</div>
+          <div style="font-size: 13px; color: var(--gold); font-weight: 600;">4 Cômodos • 28 Peças • 340W Total</div>
+        </div>
+
+        <div class="card">
+          <div style="display: flex; justify-content: space-between;">
+            <span style="font-weight: 700; font-size: 15px;">Escritório Tech Hub</span>
+            <span class="badge badge-gold">Em Elaboração</span>
+          </div>
+          <div class="subtext">📍 Surry Hills • Atualizado ontem</div>
+          <div style="font-size: 13px; color: var(--gold); font-weight: 600;">6 Cômodos • 52 Peças • 580W Total</div>
+        </div>
+      </div>
+
+      <div class="nav-bar">
+        <div class="nav-item active">📁<br>Projetos</div>
+        <div class="nav-item">💡<br>Consultor</div>
+        <div class="nav-item">📖<br>Catálogo</div>
+        <div class="nav-item">👤<br>Conta</div>
+      </div>
+    </div>
+
+    <!-- TELA 2: CONSULTOR IA - RESULTADO TRIPLA ESCOLHA -->
+    <div class="phone-frame">
+      <div class="status-bar">
+        <span>09:41</span>
+        <div class="island"></div>
+        <span>100% 🔋</span>
+      </div>
+      <div class="screen-content">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="color: var(--gold); font-weight: 700;">← Voltar</span>
+          <span class="subtext">• Cozinha (14.4m²)</span>
+        </div>
+
+        <div>
+          <div class="header-title">Recomendação IA</div>
+          <div class="subtext">Norma AS/NZS 1680: Meta 300 Lux atingida ✅</div>
+        </div>
+
+        <div style="display: flex; gap: 8px;">
+          <span class="badge badge-gold" style="flex:1; text-align:center; padding:6px;">⭐ Recomendada</span>
+          <span class="badge" style="flex:1; text-align:center; padding:6px; background:var(--ink); color:var(--grey);">💎 Premium</span>
+          <span class="badge" style="flex:1; text-align:center; padding:6px; background:var(--ink); color:var(--grey);">💰 Econômica</span>
+        </div>
+
+        <div class="card card-glow" style="align-items: center; text-align: center; padding: 24px;">
+          <div style="width: 100px; height: 100px; border-radius: 50%; background: radial-gradient(circle, #e8b86a 0%, #0a0a0a 80%); display: grid; place-items: center; margin-bottom: 12px;">
+            💡
+          </div>
+          <div style="font-size: 18px; font-weight: 700;">Aurora Deep Downlight</div>
+          <div style="font-size: 14px; color: var(--gold); font-weight: 700; margin-bottom: 10px;">Quantidade Necessária: 6x Peças</div>
+          
+          <div style="display: flex; gap: 8px; justify-content: center; font-size: 12px; color: var(--light); margin-bottom: 16px;">
+            <span>1050 lm</span> • <span>12W</span> • <span>CRI > 92</span> • <span>3000K</span>
+          </div>
+
+          <div style="font-size: 13px; color: var(--grey); margin-bottom: 8px;">Acabamento:</div>
+          <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 16px;">
+            <span style="padding: 4px 10px; border-radius: 99px; background: var(--black); border: 1px solid var(--gold); font-size: 12px;">Preto Fosco</span>
+            <span style="padding: 4px 10px; border-radius: 99px; background: var(--ink); border: 1px solid var(--line); font-size: 12px;">Branco</span>
+            <span style="padding: 4px 10px; border-radius: 99px; background: var(--ink); border: 1px solid var(--line); font-size: 12px;">Latão Ouro</span>
+          </div>
+
+          <button class="btn btn-gold" style="width: 100%;">+ Selecionar para o Projeto</button>
+        </div>
+      </div>
+
+      <div class="nav-bar">
+        <div class="nav-item">📁<br>Projetos</div>
+        <div class="nav-item active">💡<br>Consultor</div>
+        <div class="nav-item">📖<br>Catálogo</div>
+        <div class="nav-item">👤<br>Conta</div>
+      </div>
+    </div>
+
+    <!-- TELA 3: PAINEL CONSOLIDADO DO PROJETO -->
+    <div class="phone-frame">
+      <div class="status-bar">
+        <span>09:41</span>
+        <div class="island"></div>
+        <span>100% 🔋</span>
+      </div>
+      <div class="screen-content">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="color: var(--gold); font-weight: 700;">← Projetos</span>
+          <span style="font-size: 18px;">📤</span>
+        </div>
+
+        <div>
+          <div class="header-title">Residência Mosman</div>
+          <div class="subtext">Sydney, NSW • 3 Cômodos Especificados</div>
+        </div>
+
+        <div class="card" style="background: var(--off); border-color: var(--gold);">
+          <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 600;">
+            <div>Total Peças: <b style="color:var(--gold);">22 un</b></div>
+            <div>Carga: <b style="color:var(--gold);">264 W</b></div>
+            <div>AS/NZS: <b style="color:#4ade80;">100% ✅</b></div>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 14px; font-weight: 700; color: var(--grey);">CÔMODOS DO PROJETO</span>
+          <span style="font-size: 13px; color: var(--gold); font-weight: 600;">+ Add Cômodo</span>
+        </div>
+
+        <div class="card" style="padding: 12px;">
+          <div style="font-weight: 700; font-size: 14px;">🍳 Cozinha (14.4 m²)</div>
+          <div class="subtext">6x Aurora Deep 12W 3000K (Preto Fosco) • 312 Lux</div>
+        </div>
+
+        <div class="card" style="padding: 12px;">
+          <div style="font-weight: 700; font-size: 14px;">🛋️ Sala de Estar (28.0 m²)</div>
+          <div class="subtext">12x Stellar Darklight 9W 2700K • 185 Lux</div>
+        </div>
+
+        <div class="card" style="padding: 12px;">
+          <div style="font-weight: 700; font-size: 14px;">🛏️ Suíte Master (16.0 m²)</div>
+          <div class="subtext">4x Orbit Recessed + Fita LED CCT • 140 Lux</div>
+        </div>
+
+        <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px;">
+          <button class="btn btn-outline">📄 Gerar Memorial PDF</button>
+          <button class="btn btn-gold">🚀 Solicitar Cotação (RFQ)</button>
+        </div>
+      </div>
+
+      <div class="nav-bar">
+        <div class="nav-item active">📁<br>Projetos</div>
+        <div class="nav-item">💡<br>Consultor</div>
+        <div class="nav-item">📖<br>Catálogo</div>
+        <div class="nav-item">👤<br>Conta</div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

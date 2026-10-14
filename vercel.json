@@ -1,0 +1,33 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/briefing-interativo"
+    },
+    {
+      "source": "/briefing",
+      "destination": "/briefing-interativo"
+    },
+    {
+      "source": "/central",
+      "destination": "/central-qls"
+    },
+    {
+      "source": "/roadmap",
+      "destination": "/roadmap-interativo-cliente"
+    },
+    {
+      "source": "/painel",
+      "destination": "/qls-app-architecture-viewer"
+    },
+    {
+      "source": "/viewer",
+      "destination": "/qls-app-architecture-viewer"
+    },
+    {
+      "source": "/cliente",
+      "destination": "/roadmap-interativo-cliente"
+    }
+  ]
+}
